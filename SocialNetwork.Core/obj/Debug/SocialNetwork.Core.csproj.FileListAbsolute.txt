@@ -1,0 +1,6 @@
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.dll
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.pdb
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csprojAssemblyReference.cache
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
+C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb
