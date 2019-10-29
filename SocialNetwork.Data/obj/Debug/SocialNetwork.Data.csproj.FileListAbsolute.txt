@@ -4,3 +4,8 @@ C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Data\obj\Debug\SocialNetwork.Dat
 C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.csproj.CoreCompileInputs.cache
 C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.dll
 C:\Users\marcio.dsouza\Desktop\SN\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\bin\Debug\SocialNetwork.Data.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\bin\Debug\SocialNetwork.Data.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.csproj.CoreCompileInputs.cache
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.pdb

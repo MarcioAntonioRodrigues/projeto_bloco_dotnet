@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProfileRepositories.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.csproj">
+      <Project>{3ccb5a77-dd56-4f04-b7f8-cb69f4efdd4e}</Project>
+      <Name>SocialNetwork.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
