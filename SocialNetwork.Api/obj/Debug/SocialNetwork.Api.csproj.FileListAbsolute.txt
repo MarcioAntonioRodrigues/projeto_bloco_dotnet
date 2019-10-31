@@ -223,3 +223,7 @@ C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.CopyComplete
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.dll
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.pdb
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csprojAssemblyReference.cache
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.CoreCompileInputs.cache
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.dll
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.pdb
