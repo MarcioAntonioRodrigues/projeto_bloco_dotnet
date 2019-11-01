@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -51,6 +53,39 @@ namespace SocialNetwork.Web.Controllers
             }
 
             return View();
+        }
+
+        // GET: Account
+        public async Task<ActionResult> Logout()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+
+                    var myContent = JsonConvert.SerializeObject("");
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                    var byteContent = new ByteArrayContent(buffer);
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    var response = await client.PostAsJsonAsync("api/Account/Logout", byteContent);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        return RedirectToAction("Login", "Account");
+                    }
+
+                    return View("Error");
+                }
+
+            }
+
+            return RedirectToAction("Login", "Account", null);
+
         }
 
         //GET /Account/Register

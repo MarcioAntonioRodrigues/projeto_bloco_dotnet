@@ -18,7 +18,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -313,6 +314,10 @@
     <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.csproj">
       <Project>{3CCB5A77-DD56-4F04-B7F8-CB69F4EFDD4E}</Project>
       <Name>SocialNetwork.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork.Data\SocialNetwork.Data.csproj">
+      <Project>{E2602D2B-781B-4A22-9E52-FECCDD089DCF}</Project>
+      <Name>SocialNetwork.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

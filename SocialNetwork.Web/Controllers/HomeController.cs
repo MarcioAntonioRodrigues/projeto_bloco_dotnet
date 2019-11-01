@@ -10,7 +10,16 @@ namespace SocialNetwork.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult About()

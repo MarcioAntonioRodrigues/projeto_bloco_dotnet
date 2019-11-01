@@ -1,5 +1,7 @@
-﻿using SocialNetwork.Api.Models;
+﻿using Microsoft.AspNet.Identity;
+using SocialNetwork.Api.Models;
 using SocialNetwork.Core.Models;
+using SocialNetwork.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ using System.Web.Http;
 
 namespace SocialNetwork.Api.Controllers
 {
+    [Authorize]
     public class ProfilesController : ApiController
     {
         // GET: api/Profiles
