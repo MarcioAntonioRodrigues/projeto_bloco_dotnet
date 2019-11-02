@@ -18,3 +18,7 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Data\obj
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.csproj.CopyComplete
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.dll
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\bin\Debug\SocialNetwork.Core.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\bin\Debug\SocialNetwork.Core.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.csprojAssemblyReference.cache
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Data\obj\Debug\SocialNetwork.Data.csproj.CopyComplete

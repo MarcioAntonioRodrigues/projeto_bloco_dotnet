@@ -231,3 +231,4 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\obj\
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\SocialNetwork.Web.csproj.CopyComplete
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\SocialNetwork.Web.dll
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\SocialNetwork.Web.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\SocialNetwork.Web.csprojAssemblyReference.cache

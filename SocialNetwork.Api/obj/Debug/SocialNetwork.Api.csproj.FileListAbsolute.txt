@@ -340,3 +340,8 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\System.Web.Http.Owin.xml
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.CopyComplete
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Core.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Data.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Core.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Data.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csprojAssemblyReference.cache
