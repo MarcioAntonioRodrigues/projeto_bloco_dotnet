@@ -66,16 +66,12 @@ namespace SocialNetwork.Web.Controllers
                 {
                     client.BaseAddress = new Uri("http://localhost:24260/");
 
-                    //var myContent = JsonConvert.SerializeObject("");
-                    //var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
-                    //var byteContent = new ByteArrayContent(buffer);
-                    //byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
                     var response = await client.PostAsJsonAsync("api/Account/Logout", access_token);
 
                     if (response.IsSuccessStatusCode)
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
+                        Session.Add("access_token", "");
                         return RedirectToAction("Login", "Account");
                     }
 
