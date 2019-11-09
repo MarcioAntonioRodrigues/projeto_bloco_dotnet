@@ -213,6 +213,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910212347253_InitialCreate.cs" />
+    <Compile Include="Migrations\201910212347253_InitialCreate.Designer.cs">
+      <DependentUpon>201910212347253_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -319,6 +324,11 @@
       <Project>{E2602D2B-781B-4A22-9E52-FECCDD089DCF}</Project>
       <Name>SocialNetwork.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910212347253_InitialCreate.resx">
+      <DependentUpon>201910212347253_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
