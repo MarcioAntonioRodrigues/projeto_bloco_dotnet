@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
+using SocialNetwork.Api.Data;
 using SocialNetwork.Api.Models;
 using SocialNetwork.Core.Models;
 using SocialNetwork.Data.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,6 +16,13 @@ namespace SocialNetwork.Api.Controllers
     [Authorize]
     public class ProfilesController : ApiController
     {
+        private DataContext _dataContext;
+
+        public ProfilesController()
+        {
+            _dataContext = new DataContext();
+        }
+
         // GET: api/Profiles
         public IEnumerable<string> Get()
         {
@@ -21,9 +30,9 @@ namespace SocialNetwork.Api.Controllers
         }
 
         // GET: api/Profiles/5
-        public string Get(int id)
+        public DbSet<Profile> Get(int id)
         {
-            return "value";
+            return _dataContext.Profile;
         }
 
         // POST: api/Profiles
@@ -39,8 +48,14 @@ namespace SocialNetwork.Api.Controllers
                 BirthDate = model.BirthDate
             };
 
-            var repository = new ProfileRepository();
-            repository.Create(profile);
+            if(profile != null)
+            {
+                _dataContext.Profile.Add(profile);
+                _dataContext.SaveChanges();
+
+            }
+
+
 
             return Ok();
         }

@@ -9,17 +9,18 @@ using System.Web;
 
 namespace SocialNetwork.Api.Data
 {
-    public class MyUser: IdentityUser
-    {
-        public virtual Profile Profile { get; set; }
-    }
+    //public class MyUser: IdentityUser
+    //{
+    //    public virtual Profile Profile { get; set; }
+    //}
 
-    public class DataContext : IdentityDbContext
+    public class DataContext : DbContext
     {
         public DataContext()
             : base("DefaultConnection")
         {
         }
-        public System.Data.Entity.DbSet<Profile> Profile { get; set; }
+
+        public DbSet<Profile> Profile { get; set; }
     }
 }

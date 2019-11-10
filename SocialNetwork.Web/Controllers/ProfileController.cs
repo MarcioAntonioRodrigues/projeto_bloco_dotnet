@@ -45,7 +45,7 @@ namespace SocialNetwork.Web.Controllers
                     client.BaseAddress = new Uri("http://localhost:24260/");
                     client.DefaultRequestHeaders.Accept.Clear();
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"(access_token");
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
 
                     var response = await client.PostAsJsonAsync("/api/Profiles", model);
 
