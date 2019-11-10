@@ -462,3 +462,5 @@ C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\So
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.CopyComplete
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.dll
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.pdb
+C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.Migrations.InitialCreate.resources
+C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.GenerateResource.cache
