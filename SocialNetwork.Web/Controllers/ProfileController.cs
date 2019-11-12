@@ -61,5 +61,38 @@ namespace SocialNetwork.Web.Controllers
             }
             return View();
         }
+
+        public ActionResult Details()
+        {
+
+            return View();
+        }
+
+        public async Task<ActionResult> BuscarPerfilPorId()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Profiles/UserInfo");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        return RedirectToAction("Details", "Profile");
+                    }
+
+                    return View("Error");
+                }
+            }
+            return RedirectToAction("Login", "Account", null);
+        }
     }
 }

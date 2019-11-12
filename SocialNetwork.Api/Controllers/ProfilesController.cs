@@ -13,7 +13,8 @@ using System.Web.Http;
 
 namespace SocialNetwork.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/Profiles")]
     public class ProfilesController : ApiController
     {
         private DataContext _dataContext;
@@ -55,8 +56,6 @@ namespace SocialNetwork.Api.Controllers
 
             }
 
-
-
             return Ok();
         }
 
@@ -68,6 +67,15 @@ namespace SocialNetwork.Api.Controllers
         // DELETE: api/Profiles/5
         public void Delete(int id)
         {
+        }
+
+        [Route("UserInfo")]
+        public Profile GetProfileById()
+        {
+            
+            var accountId = User.Identity.GetUserId();
+            Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
+            return p;
         }
     }
 }
