@@ -1,6 +1,8 @@
-﻿using SocialNetwork.Web.Models;
+﻿using SocialNetwork.Core.Models;
+using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,19 +15,19 @@ namespace SocialNetwork.Web.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
-        public ActionResult Create()
-        {
-            string access_token = Session["access_token"]?.ToString();
+        //public ActionResult Create()
+        //{
+        //    string access_token = Session["access_token"]?.ToString();
 
-            if (string.IsNullOrEmpty(access_token))
-            {
-                return RedirectToAction("Login", "Account", null);
-            }
-            else
-            {
-                return View();
-            }
-        }
+        //    if (string.IsNullOrEmpty(access_token))
+        //    {
+        //        return RedirectToAction("Login", "Account", null);
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -64,11 +66,16 @@ namespace SocialNetwork.Web.Controllers
 
         public ActionResult Details()
         {
+            Profile p = (Profile)Session["Profile"];
+            ProfileViewModel profile = new ProfileViewModel();
+            profile.FirstName = p.FirstName;
+            profile.LastName = p.LastName;
+            profile.BirthDate = p.BirthDate.ToString("dd/MM");
 
-            return View();
+            return View(profile);
         }
 
-        public async Task<ActionResult> BuscarPerfilPorId()
+        public async Task<ActionResult> BuscarPerfil()
         {
             string access_token = Session["access_token"]?.ToString();
 
@@ -85,7 +92,8 @@ namespace SocialNetwork.Web.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var responseContent = await response.Content.ReadAsStringAsync();
+                        Session["Profile"] = await response.Content.ReadAsAsync<Profile>();
+                        
                         return RedirectToAction("Details", "Profile");
                     }
 
@@ -94,5 +102,12 @@ namespace SocialNetwork.Web.Controllers
             }
             return RedirectToAction("Login", "Account", null);
         }
+
+        public async Task<ActionResult> EditarPerfil()
+        {
+            return null;
+        }
+
+
     }
 }
