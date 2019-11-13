@@ -16,12 +16,12 @@
             Nesta sessão você poderá editar seu perfil
         </p>
 
-        @{
-            if (profile == false)
-            {
+        @*@{
+            if (profile == null)
+            {*@
             <p>@Html.ActionLink("Criar perfil", "Create", "Profile")</p>
-             }
-        }
+             @*}
+        }*@
 
         <p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile")</p>
     </div>

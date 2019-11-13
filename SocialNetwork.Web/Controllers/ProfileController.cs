@@ -14,20 +14,20 @@ namespace SocialNetwork.Web.Controllers
 {
     public class ProfileController : Controller
     {
-        // GET: Profile
-        //public ActionResult Create()
-        //{
-        //    string access_token = Session["access_token"]?.ToString();
+        //GET: Profile
+        public ActionResult Create()
+        {
+            string access_token = Session["access_token"]?.ToString();
 
-        //    if (string.IsNullOrEmpty(access_token))
-        //    {
-        //        return RedirectToAction("Login", "Account", null);
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                return View();
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

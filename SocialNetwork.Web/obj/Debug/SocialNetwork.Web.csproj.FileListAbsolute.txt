@@ -312,3 +312,5 @@ C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\So
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Web\obj\Debug\SocialNetwork.Web.pdb
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Web\bin\SocialNetwork.Core.dll
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Web\bin\SocialNetwork.Core.pdb
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\bin\SocialNetwork.Core.dll
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Web\bin\SocialNetwork.Core.pdb

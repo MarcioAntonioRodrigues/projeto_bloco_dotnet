@@ -16,6 +16,8 @@ namespace SocialNetwork.Web.Controllers
 
         public ActionResult Index()
         {
+            BuscarPerfil();
+
              Access_token = Session["access_token"]?.ToString();
 
             if (string.IsNullOrEmpty(Access_token))
@@ -24,7 +26,9 @@ namespace SocialNetwork.Web.Controllers
             }
             else
             {
-                return View(VerifyProfileAsync());
+                ViewBag.profile = Session["Profile"];
+
+                return View();
             }
         }
 
@@ -42,41 +46,65 @@ namespace SocialNetwork.Web.Controllers
             return View();
         }
 
-        public async Task<ActionResult> VerifyProfileAsync()
-        {
-            Access_token = Session["access_token"]?.ToString();
+        //public async Task<ActionResult> VerifyProfileAsync()
+        //{
+        //    Access_token = Session["access_token"]?.ToString();
 
-            if (!string.IsNullOrEmpty(Access_token))
+        //    if (!string.IsNullOrEmpty(Access_token))
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
+        //            client.BaseAddress = new Uri("http://localhost:24260/");
+        //            client.DefaultRequestHeaders.Accept.Clear();
+
+        //            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{Access_token}");
+
+        //            var response = await client.GetAsync("/api/Profiles/UserInfo");
+
+        //            if (response.IsSuccessStatusCode)
+        //            {
+        //                var profile = await response.Content.ReadAsAsync<Profile>();
+
+        //                if (profile.FirstName != null)
+        //                {
+        //                    Session["Existprofile"] = profile;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return View("Error");
+        //            }
+        //        }
+        //    }
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        public async Task<ActionResult> BuscarPerfil()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
             {
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("http://localhost:24260/");
                     client.DefaultRequestHeaders.Accept.Clear();
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{Access_token}");
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
 
                     var response = await client.GetAsync("/api/Profiles/UserInfo");
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var profile = await response.Content.ReadAsAsync<Profile>();
+                        Session["Profile"] = await response.Content.ReadAsAsync<Profile>();
 
-                        if (profile != null)
-                        {
-                            ViewBag.profile = true;
-                        }
-                        else
-                        {
-                            ViewBag.profile = false;
-                        }
+                        return RedirectToAction("Index", "Home");
                     }
-                    else
-                    {
-                        return View("Error");
-                    }
+
+                    return View("Error");
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account", null);
         }
     }
 }

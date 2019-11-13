@@ -466,3 +466,5 @@ C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\So
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.GenerateResource.cache
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.Migrations.InitialCreate.resources
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.GenerateResource.cache
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.Migrations.InitialCreate.resources
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.GenerateResource.cache
