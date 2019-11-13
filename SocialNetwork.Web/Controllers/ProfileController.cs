@@ -93,7 +93,7 @@ namespace SocialNetwork.Web.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         Session["Profile"] = await response.Content.ReadAsAsync<Profile>();
-                        
+
                         return RedirectToAction("Details", "Profile");
                     }
 

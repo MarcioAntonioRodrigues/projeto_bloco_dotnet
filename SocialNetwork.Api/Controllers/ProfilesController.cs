@@ -72,7 +72,6 @@ namespace SocialNetwork.Api.Controllers
         [Route("UserInfo")]
         public Profile GetProfileById()
         {
-            
             var accountId = User.Identity.GetUserId();
             Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
             return p;
