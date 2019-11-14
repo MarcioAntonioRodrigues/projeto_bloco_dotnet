@@ -71,7 +71,7 @@ namespace SocialNetwork.Web.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
-                        Session.Add("access_token", "");
+                        Session.Add("access_token", null);
                         return RedirectToAction("Login", "Account");
                     }
 

@@ -22,8 +22,17 @@
                 <ul class="nav navbar-nav options-page">
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Registre-se", "Register", "Account")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+
+                    @{ 
+                        if(Session["access_token"] == null)
+                        {
+                            <li>@Html.ActionLink("Registre-se", "Register", "Account")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>

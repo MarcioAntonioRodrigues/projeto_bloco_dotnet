@@ -11,19 +11,24 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Editar perfil</h2>
-        <p>
-            Nesta sessão você poderá editar seu perfil
-        </p>
 
         @{
             if (Session["Profile"] == null)
             {
-            <p>@Html.ActionLink("Criar perfil", "Create", "Profile")</p>
-             }
+                <h2>Criar perfil</h2>
+                <p>
+                    Novo por aqui? Comece a utilizar o Destrava criando o seu perfil clicando no botão abaixo.
+                </p>
+                <p>@Html.ActionLink("Criar perfil", "Create", "Profile")</p>
+            }
+            else
+            {
+                <h2>Informações de perfil</h2>
+                
+                <p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile")</p>
+            }
         }
 
-        <p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile")</p>
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
