@@ -175,6 +175,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

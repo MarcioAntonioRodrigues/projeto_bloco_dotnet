@@ -103,6 +103,11 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Login", "Account", null);
         }
 
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
         public async Task<ActionResult> EditarPerfil()
         {
             return null;
