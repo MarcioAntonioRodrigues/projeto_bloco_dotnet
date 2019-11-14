@@ -1,8 +1,10 @@
-﻿using SocialNetwork.Core.Models;
+﻿using Newtonsoft.Json;
+using SocialNetwork.Core.Models;
 using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -44,20 +46,45 @@ namespace SocialNetwork.Web.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:24260/");
-                    client.DefaultRequestHeaders.Accept.Clear();
-
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
-
-                    var response = await client.PostAsJsonAsync("/api/Profiles", model);
-
-                    if (response.IsSuccessStatusCode)
+                    using (var content = new MultipartFormDataContent())
                     {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        return View("Error");
+                        client.BaseAddress = new Uri("http://localhost:24260/");
+                        client.DefaultRequestHeaders.Accept.Clear();
+
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                        content.Add(new StringContent(JsonConvert.SerializeObject(model)));
+
+                        if(Request.Files.Count > 0)
+                        {
+                            byte[] fileBytes;
+                            using (var inputStream = Request.Files[0].InputStream)
+                            {
+                                var memoryStream = inputStream as MemoryStream;
+                                if(memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                fileBytes = memoryStream.ToArray();
+                            }
+                            var fileContent = new ByteArrayContent(fileBytes);
+                            fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+                            fileContent.Headers.ContentDisposition.FileName = Request.Files[0].FileName.Split('\\').Last();
+
+                            content.Add(fileContent);
+                        }
+
+                        var response = await client.PostAsync("/api/Profiles", content);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return View("Error");
+                        }
                     }
                 }
             }
