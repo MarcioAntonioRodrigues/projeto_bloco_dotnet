@@ -93,11 +93,20 @@ namespace SocialNetwork.Web.Controllers
 
         public ActionResult Details()
         {
+            string defaultProfileUrl = "https://marcioarmazenamento.blob.core.windows.net/api-amigo-fotos/profile.jpg";
             Profile p = (Profile)Session["Profile"];
             ProfileViewModel profile = new ProfileViewModel();
             profile.FirstName = p.FirstName;
             profile.LastName = p.LastName;
             profile.BirthDate = p.BirthDate.ToString("dd/MM");
+            if(p.PicutreUrl != null)
+            {
+                ViewBag.PictureUrl = p.PicutreUrl;
+            }
+            else
+            {
+                ViewBag.PictureUrl = defaultProfileUrl;
+            }
 
             return View(profile);
         }

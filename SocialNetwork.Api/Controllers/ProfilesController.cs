@@ -68,7 +68,8 @@ namespace SocialNetwork.Api.Controllers
                 AccountId = accountId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                BirthDate = model.BirthDate
+                BirthDate = model.BirthDate,
+                PicutreUrl = model.PicutreUrl
             };
 
             if(profile != null)

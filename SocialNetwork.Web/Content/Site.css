@@ -45,3 +45,10 @@ div.social-menu-bar ul.options-page a:hover
 {
     color: #ff5400
 }
+
+.foto-perfil
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}

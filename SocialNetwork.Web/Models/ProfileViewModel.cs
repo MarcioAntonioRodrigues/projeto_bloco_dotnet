@@ -14,5 +14,7 @@ namespace SocialNetwork.Web.Models
         public string LastName { get; set; }
         [Display(Name = "Data de aniversário")]
         public string BirthDate { get; set; }
+        [Display(Name = "Foto de perfil")]
+        public string PictureUrl { get; set; }
     }
 }
