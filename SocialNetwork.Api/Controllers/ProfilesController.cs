@@ -42,6 +42,38 @@ namespace SocialNetwork.Api.Controllers
             return _dataContext.Profile;
         }
 
+        // PUT: api/Profiles/5
+        [Route("EditProfile")]
+        public IHttpActionResult Put(string id, [FromBody]Profile profile)
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                return BadRequest();
+            }
+            var accountId = User.Identity.GetUserId();
+
+            Profile p = _dataContext.Profile.Where(x => x.Id == profile.Id).FirstOrDefault();
+
+            //Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
+
+            if(p != null)
+            {
+                p = new Profile()
+                {
+                    FirstName = profile.FirstName,
+                    LastName = profile.LastName,
+                    BirthDate = profile.BirthDate,
+                    PicutreUrl = profile.PicutreUrl
+                };
+
+                //_dataContext.Profile.Attach(profile);
+                //_dataContext.Entry(profile).State = EntityState.Modified;
+                _dataContext.SaveChanges();
+            }
+
+            return Ok();
+        }
+
         // POST: api/Profiles
         public async Task<IHttpActionResult> Post()
         {
@@ -78,7 +110,6 @@ namespace SocialNetwork.Api.Controllers
                 _dataContext.SaveChanges();
 
             }
-
             return Ok();
         }
 
@@ -112,11 +143,6 @@ namespace SocialNetwork.Api.Controllers
         {
             string ext = Path.GetExtension(fileName);
             return string.Format("{0:10}_{1}{2}", DateTime.Now.Ticks, Guid.NewGuid(), ext);
-        }
-
-        // PUT: api/Profiles/5
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         // DELETE: api/Profiles/5

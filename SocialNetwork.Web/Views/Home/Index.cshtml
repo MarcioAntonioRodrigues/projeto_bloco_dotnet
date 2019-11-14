@@ -24,8 +24,12 @@
             else
             {
                 <h2>Informações de perfil</h2>
-                
-                <p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile")</p>
+
+                <p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile", new { value = "Details" }, null)</p>
+                <p>@Html.ActionLink("Editar perfil", "BuscarPerfil2", "Profile", new { value = "Edit" }, null)</p>
+
+                @*<p>@Html.ActionLink("Acessar perfil", "SetValueParameter", "Profile", new { value = "Details"}, null)</p>
+                <p>@Html.ActionLink("Editar perfil", "SetValueParameter", "Profile", new { value = "Edit" }, null)</p>*@
             }
         }
 
