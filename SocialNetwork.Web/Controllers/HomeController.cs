@@ -14,9 +14,9 @@ namespace SocialNetwork.Web.Controllers
     {
         public string Access_token { get; set; }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            BuscarPerfil();
+            ActionResult x = await BuscarPerfil();
 
              Access_token = Session["access_token"]?.ToString();
 
@@ -26,8 +26,6 @@ namespace SocialNetwork.Web.Controllers
             }
             else
             {
-                ViewBag.profile = Session["Profile"];
-
                 return View();
             }
         }
@@ -45,39 +43,6 @@ namespace SocialNetwork.Web.Controllers
 
             return View();
         }
-
-        //public async Task<ActionResult> VerifyProfileAsync()
-        //{
-        //    Access_token = Session["access_token"]?.ToString();
-
-        //    if (!string.IsNullOrEmpty(Access_token))
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            client.BaseAddress = new Uri("http://localhost:24260/");
-        //            client.DefaultRequestHeaders.Accept.Clear();
-
-        //            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{Access_token}");
-
-        //            var response = await client.GetAsync("/api/Profiles/UserInfo");
-
-        //            if (response.IsSuccessStatusCode)
-        //            {
-        //                var profile = await response.Content.ReadAsAsync<Profile>();
-
-        //                if (profile.FirstName != null)
-        //                {
-        //                    Session["Existprofile"] = profile;
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return View("Error");
-        //            }
-        //        }
-        //    }
-        //    return RedirectToAction("Index", "Home");
-        //}
 
         public async Task<ActionResult> BuscarPerfil()
         {
