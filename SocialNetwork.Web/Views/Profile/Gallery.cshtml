@@ -1,0 +1,26 @@
+﻿@model SocialNetwork.Web.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Gallery";
+    var album = ViewBag.album;
+
+}
+
+<div>
+    <h3>Galeria de imagens</h3>
+    @if (album.Count > 0)
+    {
+        foreach (var item in album)
+        {
+            <img class="foto-gallery" src="@Url.Content(item)" />
+        }
+    }
+    else
+    {
+        <p>Não existem imagens na galeria</p>
+    }
+</div> 
+
+<p>
+    @Html.ActionLink("Voltar", "Index", "Home")
+</p>

@@ -16,7 +16,7 @@ namespace SocialNetwork.Web.Controllers
 {
     public class ProfileController : Controller
     {
-        //GET: Profile
+        //Create Profile view
         public ActionResult Create()
         {
             string access_token = Session["access_token"]?.ToString();
@@ -31,6 +31,7 @@ namespace SocialNetwork.Web.Controllers
             }
         }
 
+        //Create Profile view
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ProfileViewModel model)
@@ -91,6 +92,7 @@ namespace SocialNetwork.Web.Controllers
             return View();
         }
 
+        //Proflie details
         public ActionResult Details()
         {
             string defaultProfileUrl = "https://marcioarmazenamento.blob.core.windows.net/api-amigo-fotos/profile.jpg";
@@ -111,6 +113,7 @@ namespace SocialNetwork.Web.Controllers
             return View(profile);
         }
 
+        //Search profile
         public async Task<ActionResult> BuscarPerfil()
         {
             string access_token = Session["access_token"]?.ToString();
@@ -139,6 +142,7 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Login", "Account", null);
         }
 
+        //Search profile 2
         public async Task<ActionResult> BuscarPerfil2()
         {
             string access_token = Session["access_token"]?.ToString();
@@ -166,7 +170,8 @@ namespace SocialNetwork.Web.Controllers
             }
             return RedirectToAction("Login", "Account", null);
         }
-
+        
+        //Edit profile view
         public ActionResult Edit()
         {
             Profile p = (Profile)Session["Profile"];
@@ -181,6 +186,7 @@ namespace SocialNetwork.Web.Controllers
             return View(profile);
         }
 
+        //Edit profile
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditarPerfil(ProfileViewModel model)
@@ -241,12 +247,44 @@ namespace SocialNetwork.Web.Controllers
             return View();
         }
 
-        //public void SetValueParameter(string value)
-        //{
-        //    Session["setValue"] = value;
-        //    BuscarPerfil();
-        //}
+        // Get photo album
+        [HttpGet]
+        public async Task<ActionResult> GetPhotoAlbum()
+        {
+            string access_token = Session["access_token"]?.ToString();
 
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:24260/");
+                client.DefaultRequestHeaders.Accept.Clear();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                var response = await client.GetAsync("/api/Profiles/GetBlobs");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Session["BlobsList"] = await response.Content.ReadAsAsync<List<string>>();
+
+                    return RedirectToAction("Gallery", "Profile");
+                }
+
+                return View("Error");
+            }
+
+        }
+
+        public ActionResult Gallery()
+        {
+            List<string> album = (List<string>)Session["BlobsList"];
+            ViewBag.album = album;
+            return View();
+        }
 
     }
 }

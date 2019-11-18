@@ -123,7 +123,9 @@ namespace SocialNetwork.Api.Controllers
         {
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-            var blobContainerName = "api-amigo-fotos";
+            var accountId = User.Identity.GetUserId();
+
+            var blobContainerName = accountId;
             var blobClient = storageAccount.CreateCloudBlobClient();
             var blobContainer = blobClient.GetContainerReference(blobContainerName);
 
@@ -153,6 +155,41 @@ namespace SocialNetwork.Api.Controllers
         {
             string ext = Path.GetExtension(fileName);
             return string.Format("{0:10}_{1}{2}", DateTime.Now.Ticks, Guid.NewGuid(), ext);
+        }
+
+        [Route("GetBlobs")]
+        public async Task<List<string>> GetBlobs()
+        {
+            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            var accountId = User.Identity.GetUserId();
+
+            var blobContainerName = accountId;
+            var blobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference(blobContainerName);
+
+            await container.CreateIfNotExistsAsync();
+
+            await container.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+
+            BlobContinuationToken continuationToken = null;
+            List<IListBlobItem> blobItems = new List<IListBlobItem>();
+
+            do
+            {
+                var response = await container.ListBlobsSegmentedAsync(continuationToken);
+                continuationToken = response.ContinuationToken;
+                blobItems.AddRange(response.Results);
+            }
+            while (continuationToken != null);
+
+            List<string> urisList = new List<string>();
+             foreach(var item in blobItems)
+            {
+                urisList.Add(item.Uri.ToString());
+            }
+
+            return urisList;
         }
 
         // DELETE: api/Profiles/5
