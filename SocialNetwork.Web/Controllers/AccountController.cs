@@ -22,8 +22,11 @@ namespace SocialNetwork.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model)
+        public async Task<ActionResult> Login(string username, string password)
         {
+            LoginViewModel model = new LoginViewModel();
+            model.Username = username;
+            model.Password = password;
 
             if (ModelState.IsValid)
             {
@@ -72,7 +75,7 @@ namespace SocialNetwork.Web.Controllers
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
                         Session.Add("access_token", null);
-                        return RedirectToAction("Login", "Account");
+                        return RedirectToAction("Register", "Account");
                     }
 
                     return View("Error");

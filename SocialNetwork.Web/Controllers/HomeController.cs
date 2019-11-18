@@ -22,7 +22,7 @@ namespace SocialNetwork.Web.Controllers
 
             if (string.IsNullOrEmpty(Access_token))
             {
-                return RedirectToAction("Login", "Account", null);
+                return RedirectToAction("Register", "Account", null);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace SocialNetwork.Web.Controllers
                     return View("Error");
                 }
             }
-            return RedirectToAction("Login", "Account", null);
+            return RedirectToAction("Register", "Account", null);
         }
     }
 }

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar social-menu-bar navbar-fixed-top">
@@ -20,19 +21,47 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav options-page">
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
 
-                    @{ 
-                        if(Session["access_token"] == null)
+
+                    @{
+                        if (Session["access_token"] == null)
                         {
-                            <li>@Html.ActionLink("Registre-se", "Register", "Account")</li>
+
+                            using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="login-form">
+                                    <span>
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" />
+                                    </span>
+                                    <span>
+                                        <label for="password">Senha</label>
+                                        <input type="text" name="password" />
+                                    </span>
+                                    <input type="submit" value="Log In" class="btn btn-default" />
+                                </div>
+                            }
                         }
                         else
                         {
-                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            <li>
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </li>
+                            <li>
+                                <i class="fa fa-user" aria-hidden="true" title="Perfil">
+                                    @Html.ActionLink("Details", "Details", "Profile", null, new { @class = "transparent" })
+                                </i>
+                            </li>
+                            <li>
+                                <i class="fa fa-sign-out" aria-hidden="true" title="Sair">
+                                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "transparent" })
+                                </i>
+                            </li>
                         }
                     }
+
                 </ul>
             </div>
         </div>

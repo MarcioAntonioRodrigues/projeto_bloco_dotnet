@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 50px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -31,8 +32,12 @@ footer
     max-width: 800px;
 }
 
-div.social-menu-bar 
+.navbar-collapse
 {
+    min-height: 85px;
+}
+
+div.social-menu-bar {
     background-color: #ff5400;
 }
 
@@ -57,4 +62,62 @@ div.social-menu-bar ul.options-page a:hover
 {
     width: 150px;
     height: 150px;
+}
+
+div.login-form
+{
+    display: flex;
+    padding: 10px;
+}
+
+div.login-form span label
+{
+    display: block;
+    color:#fff;
+    margin-left: 10px;
+}
+
+div.login-form input 
+{
+    margin: 0 10px;
+    border: none;
+    padding: 5px;
+    height: 40px;
+}
+
+div.login-form input:nth-child(3)
+{
+    margin-top:25px;
+    width: 60px;
+}
+
+ul.options-page {
+    float: right;
+}
+
+ul.options-page i 
+{
+    color: #fff;
+    font-size: 20px;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+}
+ul.options-page a
+{
+    margin-top: 20px;
+}
+.transparent
+{
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width:40px;
+    color: transparent !important;
+}
+.navbar-brand 
+{
+    font-size: 30px;
+    margin-top: 20px;
 }
