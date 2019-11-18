@@ -44,30 +44,36 @@ namespace SocialNetwork.Api.Controllers
 
         // PUT: api/Profiles/5
         [Route("EditProfile")]
-        public IHttpActionResult Put(string id, [FromBody]Profile profile)
+        public async Task<IHttpActionResult> Put()
         {
             if (!Request.Content.IsMimeMultipartContent())
             {
                 return BadRequest();
             }
             var accountId = User.Identity.GetUserId();
+            Profile p = _dataContext.Profile.Where(x => x.AccountId == accountId).FirstOrDefault();
 
-            Profile p = _dataContext.Profile.Where(x => x.Id == profile.Id).FirstOrDefault();
+            var result = await Request.Content.ReadAsMultipartAsync();
+            var requestJson = await result.Contents[0].ReadAsStringAsync();
+            var model = JsonConvert.DeserializeObject<ProfileBindingModel>(requestJson);
 
-            //Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
-
-            if(p != null)
+            if (result.Contents.Count > 1)
             {
-                p = new Profile()
-                {
-                    FirstName = profile.FirstName,
-                    LastName = profile.LastName,
-                    BirthDate = profile.BirthDate,
-                    PicutreUrl = profile.PicutreUrl
-                };
+                model.PicutreUrl = await CreateBlob(result.Contents[1]);
+            }
 
-                //_dataContext.Profile.Attach(profile);
-                //_dataContext.Entry(profile).State = EntityState.Modified;
+            if (p != null)
+            {
+                p.FirstName = model.FirstName;
+                p.LastName = model.LastName;
+                p.BirthDate = model.BirthDate;
+                if(model.PicutreUrl != null)
+                {
+                    p.PicutreUrl = model.PicutreUrl;
+                }
+
+                _dataContext.Profile.Add(p);
+                _dataContext.Entry(p).State = EntityState.Modified;
                 _dataContext.SaveChanges();
             }
 
@@ -130,6 +136,10 @@ namespace SocialNetwork.Api.Controllers
                 });
 
             var fileName = httpContent.Headers.ContentDisposition.FileName;
+            if(fileName == null)
+            {
+                return null;
+            }
             var byteArray = await httpContent.ReadAsByteArrayAsync();
 
             var blob = blobContainer.GetBlockBlobReference(GetRandomBlobName(fileName));

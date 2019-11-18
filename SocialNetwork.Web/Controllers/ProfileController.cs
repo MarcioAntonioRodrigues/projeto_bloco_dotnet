@@ -170,17 +170,16 @@ namespace SocialNetwork.Web.Controllers
         public ActionResult Edit()
         {
             Profile p = (Profile)Session["Profile"];
-            ProfileViewModel profile = new ProfileViewModel();
-            profile.FirstName = p.FirstName;
-            profile.LastName = p.LastName;
-            profile.BirthDate = p.BirthDate.ToString("dd/MM");
+            ProfileViewModel profile = new ProfileViewModel
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                BirthDate = p.BirthDate.ToString("dd/MM"),
+                PictureUrl = p.PicutreUrl
+            };
+            ViewBag.ProfilePicture = p.PicutreUrl;
             return View(profile);
         }
-
-        //public async Task<ActionResult> EditarPerfil()
-        //{
-        //    return null;
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -226,7 +225,7 @@ namespace SocialNetwork.Web.Controllers
                             content.Add(fileContent);
                         }
 
-                        var response = await client.PostAsync("/api/Profiles/EditProfile", content);
+                        var response = await client.PutAsync("/api/Profiles/EditProfile", content);
 
                         if (response.IsSuccessStatusCode)
                         {
