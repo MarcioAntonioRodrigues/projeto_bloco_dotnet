@@ -104,9 +104,14 @@ ul.options-page i
     position: relative;
     margin-top: 20px;
 }
+ul.options-page a:first-child
+{
+    margin-top:20px;
+}
 ul.options-page a
 {
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-left:-28px;
 }
 .transparent
 {

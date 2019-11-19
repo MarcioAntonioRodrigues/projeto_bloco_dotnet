@@ -475,3 +475,10 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Configuration.xml
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Storage.pdb
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Storage.xml
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.Azure.KeyVault.Core.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Storage.dll
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.Azure.KeyVault.Core.xml
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Api\bin\Microsoft.WindowsAzure.Storage.xml

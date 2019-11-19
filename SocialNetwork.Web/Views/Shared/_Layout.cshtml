@@ -34,11 +34,11 @@
                                 <div class="login-form">
                                     <span>
                                         <label for="username">Username</label>
-                                        <input type="text" name="username" />
+                                        <input required type="text" name="username" />
                                     </span>
                                     <span>
                                         <label for="password">Senha</label>
-                                        <input type="text" name="password" />
+                                        <input required type="text" name="password" />
                                     </span>
                                     <input type="submit" value="Log In" class="btn btn-default" />
                                 </div>
@@ -49,11 +49,14 @@
                             <li>
                                 @Html.ActionLink("Home", "Index", "Home")
                             </li>
-                            <li>
-                                <i class="fa fa-user" aria-hidden="true" title="Perfil">
-                                    @Html.ActionLink("Details", "Details", "Profile", null, new { @class = "transparent" })
-                                </i>
-                            </li>
+                            if(Session["Profile"] != null)
+                            {
+                                <li>
+                                    <i class="fa fa-user" aria-hidden="true" title="Perfil">
+                                        @Html.ActionLink("Details", "Details", "Profile", null, new { @class = "transparent" })
+                                    </i>
+                                </li>
+                            }
                             <li>
                                 <i class="fa fa-sign-out" aria-hidden="true" title="Sair">
                                     @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "transparent" })
