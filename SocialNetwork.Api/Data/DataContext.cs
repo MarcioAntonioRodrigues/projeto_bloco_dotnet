@@ -9,11 +9,6 @@ using System.Web;
 
 namespace SocialNetwork.Api.Data
 {
-    //public class MyUser: IdentityUser
-    //{
-    //    public virtual Profile Profile { get; set; }
-    //}
-
     public class DataContext : DbContext
     {
         public DataContext()
