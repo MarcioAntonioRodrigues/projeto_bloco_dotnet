@@ -9,11 +9,6 @@ C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb
-C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.dll
-C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.pdb
-C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
-C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
-C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb
 C:\Users\marcio.dsouza\Desktop\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csprojAssemblyReference.cache
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.dll
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.pdb
@@ -21,3 +16,9 @@ C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\S
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
 C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.dll
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\bin\Debug\SocialNetwork.Core.pdb
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csprojAssemblyReference.cache
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb

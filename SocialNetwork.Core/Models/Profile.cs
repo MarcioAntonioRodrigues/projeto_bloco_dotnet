@@ -14,5 +14,7 @@ namespace SocialNetwork.Core.Models
         public DateTime BirthDate { get; set; }
         public string PicutreUrl { get; set; }
         public string AccountId { get; set; }
+        public ICollection<Gallery> Galleries { get; set; }
+        public ICollection<Friend> Friends { get; set; }
     }
 }

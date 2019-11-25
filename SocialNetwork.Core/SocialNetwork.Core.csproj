@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Friend.cs" />
+    <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\GalleryImage.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\ProfileGallery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
