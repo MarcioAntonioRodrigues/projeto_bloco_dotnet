@@ -110,12 +110,36 @@ namespace SocialNetwork.Api.Controllers
                 PicutreUrl = model.PicutreUrl
             };
 
-            if(profile != null)
+            if (profile != null)
             {
                 _dataContext.Profile.Add(profile);
                 _dataContext.SaveChanges();
 
             }
+
+            Image image = new Image()
+            {
+                Title = "Foto de perfil",
+                Url = model.PicutreUrl
+            };
+
+            List<Image> images = new List<Image>();
+            images.Add(image);
+
+            Gallery gallery = new Gallery()
+            {
+                Name = "Fotos de perfil",
+                Images = images,
+                ProfileId = profile.Id
+            };
+
+            Gallery userGallery = _dataContext.Gallery.Add(gallery);
+
+            profile.Galleries.Add(userGallery);
+
+            _dataContext.Entry(profile).State = System.Data.Entity.EntityState.Modified;
+            _dataContext.SaveChanges();
+
             return Ok();
         }
 
