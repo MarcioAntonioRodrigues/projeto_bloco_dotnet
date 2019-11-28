@@ -1,6 +1,10 @@
-﻿using System;
+﻿using SocialNetwork.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -28,13 +32,39 @@ namespace SocialNetwork.Web.Controllers
 
         // POST: Images/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(ImageViewModel model)
         {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            ImageViewModel image = new ImageViewModel()
+            {
+                Title = model.Title,
+                Subtitle = model.Subtitle
+            };
+
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("http://localhost:24260/");
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+                        var response = await client.PostAsJsonAsync("api/Images", image);
 
-                return RedirectToAction("Index");
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Index", "Gallery");
+                        }
+                        return View("Error");
+                    }
+                }
+                return RedirectToAction("Index", "Gallery");
             }
             catch
             {

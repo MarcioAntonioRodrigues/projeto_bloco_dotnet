@@ -60,6 +60,7 @@ namespace SocialNetwork.Api.Controllers
         // POST: api/Images
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/Images/5
