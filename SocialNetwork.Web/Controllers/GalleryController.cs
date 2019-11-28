@@ -1,4 +1,5 @@
 ﻿using SocialNetwork.Core.Models;
+using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,19 @@ namespace SocialNetwork.Web.Controllers
     public class GalleryController : Controller
     {
         // GET: Gallery
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            ActionResult x = await GetGalleries();
-            IEnumerable<Gallery> gals = (IEnumerable<Gallery>)Session["Galleries"];
-
+            IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
             return View(gals);
         }
 
         // GET: Gallery/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            ActionResult x = await GetGalleryById(id);
+            GalleryViewModel gallery = (GalleryViewModel)Session["Gallery"];
+
+            return View(gallery);
         }
 
         // GET: Gallery/Create
@@ -39,7 +41,8 @@ namespace SocialNetwork.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+
+
 
                 return RedirectToAction("Index");
             }
@@ -93,6 +96,36 @@ namespace SocialNetwork.Web.Controllers
             }
         }
 
+        public async Task<ActionResult> GetGalleryById(int id)
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Gallery/" + id);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Session["Gallery"] = await response.Content.ReadAsAsync<GalleryViewModel>();
+
+                        return RedirectToAction("Details", "Gallery");
+                    }
+
+                    return View("Error");
+                }
+            }
+            return RedirectToAction("Index", "Profile");
+
+        }
+
+
         public async Task<ActionResult> GetGalleries()
         {
             string access_token = Session["access_token"]?.ToString();
@@ -110,7 +143,7 @@ namespace SocialNetwork.Web.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Session["Galleries"] = await response.Content.ReadAsAsync<List<Gallery>>();
+                        Session["Galleries"] = await response.Content.ReadAsAsync<List<GalleryViewModel>>();
 
                         return RedirectToAction("Index", "Gallery");
                     }

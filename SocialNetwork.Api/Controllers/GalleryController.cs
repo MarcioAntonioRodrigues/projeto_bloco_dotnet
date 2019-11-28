@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using SocialNetwork.Api.Data;
+using SocialNetwork.Api.Models;
 using SocialNetwork.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace SocialNetwork.Api.Controllers
         }
 
         // GET: api/Gallery
-        public IEnumerable<Gallery> Get()
+        public IEnumerable<GalleryBindModel> Get()
         {
             var accountId = User.Identity.GetUserId();
 
@@ -28,20 +29,38 @@ namespace SocialNetwork.Api.Controllers
 
             var dataGallery = _dataContext.Gallery.Where(g => g.ProfileId == p.Id).ToList();
 
-            List<Gallery> ProfileGallery = new List<Gallery>();
+            List<GalleryBindModel> ProfileGallery = new List<GalleryBindModel>();
 
             foreach (var gal in dataGallery)
             {
-                ProfileGallery.Add(gal);
+                GalleryBindModel gallery = new GalleryBindModel()
+                {
+                    GalleryId = gal.GalleryId,
+                    Name = gal.Name,
+                    ProfileId = gal.ProfileId
+                };
+                ProfileGallery.Add(gallery);
             }
 
             return ProfileGallery;
         }
 
         // GET: api/Gallery/5
-        public string Get(int id)
+        public List<Image> Get(int id)
         {
-            return "value";
+            Gallery gallery = _dataContext.Gallery.Where(g => g.GalleryId == id).FirstOrDefault();
+            List<Image> images = _dataContext.Image.Where(i => i.GalleryId == id).ToList();
+
+
+
+            //GalleryBindModel gal = new GalleryBindModel()
+            //{
+            //    Name = gallery.Name,
+            //    GalleryId = gallery.GalleryId,
+            //    Images = images,
+            //};
+
+            return images;
         }
 
         // POST: api/Gallery
