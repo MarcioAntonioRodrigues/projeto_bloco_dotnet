@@ -4,39 +4,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Galeria de imagens</h2>
 
 <div>
-    <h4>GalleryViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GalleryId)
-        </dt>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    
+    <div>
+        @foreach (var image in Model.Images)
+        {
+            <a href="@Url.Content(image.Url)" target="blank">
+                <img class="foto-gallery" src="@Url.Content(image.Url)" />
+            </a>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.GalleryId)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProfileId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProfileId)
-        </dd>
-
-    </dl>
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.GalleryId }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para galerias", "Index")
 </p>

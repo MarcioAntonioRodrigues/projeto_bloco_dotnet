@@ -1,7 +1,9 @@
-﻿using SocialNetwork.Core.Models;
+﻿using Newtonsoft.Json;
+using SocialNetwork.Core.Models;
 using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -14,17 +16,29 @@ namespace SocialNetwork.Web.Controllers
     public class GalleryController : Controller
     {
         // GET: Gallery
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
-            return View(gals);
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                ActionResult x = await GetGalleries();
+                IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
+                return View(gals);
+            }
         }
 
         // GET: Gallery/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            ActionResult x = await GetGalleryById(id);
-            GalleryViewModel gallery = (GalleryViewModel)Session["Gallery"];
+            ActionResult x = await GetImagesByGalleryId(id);
+            GalleryViewModel gallery = GetGallery(id);
+            ICollection<ImageViewModel> images = (ICollection<ImageViewModel>)Session["Images"];
+            gallery.Images = images;
 
             return View(gallery);
         }
@@ -32,19 +46,53 @@ namespace SocialNetwork.Web.Controllers
         // GET: Gallery/Create
         public ActionResult Create()
         {
-            return View();
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Gallery/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(GalleryViewModel model)
         {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            GalleryViewModel gallery = new GalleryViewModel()
+            {
+                Name = model.Name
+            };
+
             try
             {
+                if (ModelState.IsValid)
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("http://localhost:24260/");
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+                        var response = await client.PostAsJsonAsync("api/Gallery", gallery);
 
-
-
-                return RedirectToAction("Index");
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Index", "Gallery");
+                        }
+                        return View("Error");
+                    }
+                }
+                return RedirectToAction("Index", "Gallery");
             }
             catch
             {
@@ -96,7 +144,7 @@ namespace SocialNetwork.Web.Controllers
             }
         }
 
-        public async Task<ActionResult> GetGalleryById(int id)
+        public async Task<ActionResult> GetImagesByGalleryId(int id)
         {
             string access_token = Session["access_token"]?.ToString();
 
@@ -113,7 +161,7 @@ namespace SocialNetwork.Web.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Session["Gallery"] = await response.Content.ReadAsAsync<GalleryViewModel>();
+                        Session["Images"] = await response.Content.ReadAsAsync<List<ImageViewModel>>();
 
                         return RedirectToAction("Details", "Gallery");
                     }
@@ -122,7 +170,6 @@ namespace SocialNetwork.Web.Controllers
                 }
             }
             return RedirectToAction("Index", "Profile");
-
         }
 
 
@@ -152,6 +199,13 @@ namespace SocialNetwork.Web.Controllers
                 }
             }
             return RedirectToAction("Index", "Profile");
+        }
+
+        public GalleryViewModel GetGallery(int id)
+        {
+            IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
+            GalleryViewModel gal = gals.Where(g => g.GalleryId == id).FirstOrDefault();
+            return gal;
         }
     }
 }

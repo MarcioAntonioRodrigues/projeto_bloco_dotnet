@@ -46,26 +46,43 @@ namespace SocialNetwork.Api.Controllers
         }
 
         // GET: api/Gallery/5
-        public List<Image> Get(int id)
+        public List<ImageBindModel> Get(int id)
         {
             Gallery gallery = _dataContext.Gallery.Where(g => g.GalleryId == id).FirstOrDefault();
             List<Image> images = _dataContext.Image.Where(i => i.GalleryId == id).ToList();
+            List<ImageBindModel> bindImages = new List<ImageBindModel>();
+            foreach (var i in images)
+            {
+                ImageBindModel image = new ImageBindModel()
+                {
+                    Title = i.Title,
+                    Subtitle = i.Subtitle,
+                    Url = i.Url,
+                    GalleryId = i.GalleryId,
+                    ImageId = i.ImageId
+                };
+                bindImages.Add(image);
+            }
 
-
-
-            //GalleryBindModel gal = new GalleryBindModel()
-            //{
-            //    Name = gallery.Name,
-            //    GalleryId = gallery.GalleryId,
-            //    Images = images,
-            //};
-
-            return images;
+            return bindImages;
         }
 
         // POST: api/Gallery
-        public void Post([FromBody]string value)
+        public void Post(GalleryBindModel Gallery)
         {
+            var accountId = User.Identity.GetUserId();
+
+            var profile = _dataContext.Profile.Where(p => p.AccountId == accountId).FirstOrDefault();
+            var profileId = profile.Id;
+
+            var Gal = new Gallery()
+            {
+                Name = Gallery.Name,
+                ProfileId = profileId
+            };
+
+            _dataContext.Gallery.Add(Gal);
+            _dataContext.SaveChanges();
         }
 
         // PUT: api/Gallery/5

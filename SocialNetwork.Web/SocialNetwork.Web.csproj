@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GalleryViewModel.cs" />
+    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewmodel.cs" />
@@ -182,6 +183,7 @@
     <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
+    <Content Include="Views\Gallery\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,7 @@ namespace SocialNetwork.Web.Models
         [Display(Name = "Nome")]
         public string Name { get; set; }
         [Display(Name = "Imagens")]
-        public ICollection<Image> Images { get; set; }
+        public ICollection<ImageViewModel> Images { get; set; }
         public Profile Profile { get; set; }
         public int ProfileId { get; set; }
     }
