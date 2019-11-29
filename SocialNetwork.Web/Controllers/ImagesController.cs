@@ -42,12 +42,8 @@ namespace SocialNetwork.Web.Controllers
             {
                 return RedirectToAction("Login", "Account", null);
             }
+
             model.GalleryId = (int)Session["GalleryId"];
-            //ImageViewModel image = new ImageViewModel()
-            //{
-            //    Title = model.Title,
-            //    Subtitle = model.Subtitle
-            //};
 
             if (ModelState.IsValid)
             {

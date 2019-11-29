@@ -20,10 +20,12 @@ namespace SocialNetwork.Api.Controllers
     public class ImagesController : ApiController
     {
         private DataContext _dataContext;
+        private BlobCreator _blobCreator;
 
         public ImagesController()
         {
             _dataContext = new DataContext();
+            _blobCreator = new BlobCreator();
         }
 
         // GET: api/Images
@@ -79,7 +81,7 @@ namespace SocialNetwork.Api.Controllers
 
             if (result.Contents.Count > 1)
             {
-                model.Url = await CreateBlob(result.Contents[1], model.Title);
+                model.Url = await _blobCreator.CreateBlob(result.Contents[1], model.Title);
             }
 
             var image = new Image()
@@ -107,42 +109,6 @@ namespace SocialNetwork.Api.Controllers
         // DELETE: api/Images/5
         public void Delete(int id)
         {
-        }
-
-        private async Task<string> CreateBlob(HttpContent httpContent, string blobName)
-        {
-            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            var blobContainerName = "api-amigo-fotos";
-            var blobClient = storageAccount.CreateCloudBlobClient();
-            var blobContainer = blobClient.GetContainerReference(blobContainerName);
-
-            await blobContainer.CreateIfNotExistsAsync();
-
-            await blobContainer.SetPermissionsAsync(
-                new BlobContainerPermissions
-                {
-                    PublicAccess = BlobContainerPublicAccessType.Blob
-                });
-
-            var fileName = httpContent.Headers.ContentDisposition.FileName;
-            if (fileName == null)
-            {
-                return null;
-            }
-            var byteArray = await httpContent.ReadAsByteArrayAsync();
-
-            var blob = blobContainer.GetBlockBlobReference(GetRandomBlobName(fileName));
-            await blob.UploadFromByteArrayAsync(byteArray, 0, byteArray.Length);
-
-            return blob.Uri.AbsoluteUri;
-
-        }
-
-        private string GetRandomBlobName(string fileName)
-        {
-            string ext = Path.GetExtension(fileName);
-            return string.Format("{0:10}_{1}{2}", DateTime.Now.Ticks, Guid.NewGuid(), ext);
         }
     }
 }

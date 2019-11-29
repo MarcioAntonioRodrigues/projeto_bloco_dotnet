@@ -24,10 +24,12 @@ namespace SocialNetwork.Api.Controllers
     public class ProfilesController : ApiController
     {
         private DataContext _dataContext;
+        private BlobCreator _blobCreator;
 
         public ProfilesController()
         {
             _dataContext = new DataContext();
+            _blobCreator = new BlobCreator();
         }
 
         // GET: api/Profiles
@@ -59,7 +61,7 @@ namespace SocialNetwork.Api.Controllers
 
             if (result.Contents.Count > 1)
             {
-                model.PicutreUrl = await CreateBlob(result.Contents[1]);
+                model.PicutreUrl = await _blobCreator.CreateBlob(result.Contents[1], "Foto de perfil");
             }
 
             if (p != null)
@@ -96,7 +98,7 @@ namespace SocialNetwork.Api.Controllers
 
             if(result.Contents.Count > 1)
             {
-                model.PicutreUrl = await CreateBlob(result.Contents[1]);
+                model.PicutreUrl = await _blobCreator.CreateBlob(result.Contents[1], "Foto de perfil");
             }
 
             var accountId = User.Identity.GetUserId();
@@ -141,44 +143,6 @@ namespace SocialNetwork.Api.Controllers
             _dataContext.SaveChanges();
 
             return Ok();
-        }
-
-        private async Task<string> CreateBlob(HttpContent httpContent)
-        {
-            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-
-            var accountId = User.Identity.GetUserId();
-
-            var blobContainerName = accountId;
-            var blobClient = storageAccount.CreateCloudBlobClient();
-            var blobContainer = blobClient.GetContainerReference(blobContainerName);
-
-            await blobContainer.CreateIfNotExistsAsync();
-
-            await blobContainer.SetPermissionsAsync(
-                new BlobContainerPermissions
-                {
-                    PublicAccess = BlobContainerPublicAccessType.Blob
-                });
-
-            var fileName = httpContent.Headers.ContentDisposition.FileName;
-            if(fileName == null)
-            {
-                return null;
-            }
-            var byteArray = await httpContent.ReadAsByteArrayAsync();
-
-            var blob = blobContainer.GetBlockBlobReference(GetRandomBlobName(fileName));
-            await blob.UploadFromByteArrayAsync(byteArray, 0, byteArray.Length);
-
-            return blob.Uri.AbsoluteUri;
-            
-        }
-
-        private string GetRandomBlobName(string fileName)
-        {
-            string ext = Path.GetExtension(fileName);
-            return string.Format("{0:10}_{1}{2}", DateTime.Now.Ticks, Guid.NewGuid(), ext);
         }
 
         [Route("GetBlobs")]
