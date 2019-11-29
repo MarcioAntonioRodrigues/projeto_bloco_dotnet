@@ -102,8 +102,10 @@ div.login-form input:nth-child(3)
     box-shadow: 0px 0px 1px 0px black;
 }
 
-ul.options-page {
+ul.options-page 
+{
     float: right;
+    margin-top: 10px;
 }
 
 ul.options-page i 
