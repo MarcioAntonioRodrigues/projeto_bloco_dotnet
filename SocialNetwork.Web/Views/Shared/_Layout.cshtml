@@ -17,12 +17,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Destrava", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <img class="logotipo" src="destrava-logo.png"/>
+                @*@Html.ActionLink("destrave", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav options-page">
-
-
                     @{
                         if (Session["access_token"] == null)
                         {

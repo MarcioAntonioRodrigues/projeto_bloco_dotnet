@@ -7,7 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -16,7 +16,10 @@
 .dl-horizontal dt {
     white-space: normal;
 }
-
+.form-horizontal
+{
+    width: 50%;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -37,8 +40,10 @@ footer
     min-height: 85px;
 }
 
-div.social-menu-bar {
+div.social-menu-bar 
+{
     background-color: #ff5400;
+    height: 110px;
 }
 
 div.social-menu-bar a
@@ -68,6 +73,7 @@ div.login-form
 {
     display: flex;
     padding: 10px;
+    margin-top: 10px;
 }
 
 div.login-form span label
@@ -83,12 +89,17 @@ div.login-form input
     border: none;
     padding: 5px;
     height: 40px;
+    border-radius: 2px;
 }
 
-div.login-form input:nth-child(3)
+div.login-form input:nth-child(3) 
 {
-    margin-top:25px;
+    color: #fff;
     width: 60px;
+    margin-top: 25px;
+    font-weight: bold;
+    background: #b3430c;
+    box-shadow: 0px 0px 1px 0px black;
 }
 
 ul.options-page {
@@ -123,6 +134,17 @@ ul.options-page a
 }
 .navbar-brand 
 {
-    font-size: 30px;
+    font-size: 80px;
+    margin-top: 30px;
+}
+
+img.logotipo 
+{
     margin-top: 20px;
+    width: 200px;
+}
+
+form
+{
+    display:flex;
 }
