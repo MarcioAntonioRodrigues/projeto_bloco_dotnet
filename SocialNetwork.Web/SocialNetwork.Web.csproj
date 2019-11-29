@@ -184,10 +184,10 @@
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\Create.cshtml" />
+    <Content Include="Views\Images\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Images\" />
     <Folder Include="Views\Values\" />
   </ItemGroup>
   <ItemGroup>

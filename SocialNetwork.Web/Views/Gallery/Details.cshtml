@@ -2,13 +2,14 @@
 
 @{
     ViewBag.Title = "Details";
+    var GalleryId = Model.GalleryId;
 }
 
 <h2>Galeria de imagens</h2>
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
-    
+
     <div>
         @foreach (var image in Model.Images)
         {
@@ -18,6 +19,10 @@
         }
 
     </div>
+
+        @Html.ActionLink("Adicionar nova imagem", "AddImageToGallery")   
+
+
 
 </div>
 <p>

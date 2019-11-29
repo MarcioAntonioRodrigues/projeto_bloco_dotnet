@@ -39,7 +39,7 @@ namespace SocialNetwork.Web.Controllers
             GalleryViewModel gallery = GetGallery(id);
             ICollection<ImageViewModel> images = (ICollection<ImageViewModel>)Session["Images"];
             gallery.Images = images;
-
+            Session["GalleryId"] = gallery.GalleryId;
             return View(gallery);
         }
 
@@ -206,6 +206,11 @@ namespace SocialNetwork.Web.Controllers
             IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
             GalleryViewModel gal = gals.Where(g => g.GalleryId == id).FirstOrDefault();
             return gal;
+        }
+
+        public ActionResult AddImageToGallery()
+        {
+            return RedirectToAction("Create", "Images");
         }
     }
 }
