@@ -8,6 +8,7 @@ namespace SocialNetwork.Web.Models
 {
     public class ProfileViewModel
     {
+        public int Id { get; set; }
         [Display(Name = "Nome")]
         public string FirstName { get; set; }
         [Display(Name = "Sobrenome")]

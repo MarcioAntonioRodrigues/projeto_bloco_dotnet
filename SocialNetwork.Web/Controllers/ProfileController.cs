@@ -16,6 +16,23 @@ namespace SocialNetwork.Web.Controllers
 {
     public class ProfileController : Controller
     {
+        //FriendsList view
+        public async Task<ActionResult> FriendsList()
+        {
+            ActionResult x = await GetFriendsList();
+            List<ProfileViewModel> profilesList = (List<ProfileViewModel>)Session["ProfilesList"];
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                return View(profilesList);
+            }
+        }
+
         //Create Profile view
         public ActionResult Create()
         {
@@ -170,7 +187,36 @@ namespace SocialNetwork.Web.Controllers
             }
             return RedirectToAction("Login", "Account", null);
         }
-        
+
+        //Search profile 2
+        public async Task<ActionResult> GetProfileById(int id)
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Profiles/GetProfileById/" + id);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Session["ProfileById"] = await response.Content.ReadAsAsync<Profile>();
+
+                        return RedirectToAction("Edit", "ProfileFromListPage");
+                    }
+
+                    return View("Error");
+                }
+            }
+            return RedirectToAction("Login", "Account", null);
+        }
+
         //Edit profile view
         public ActionResult Edit()
         {
@@ -279,11 +325,56 @@ namespace SocialNetwork.Web.Controllers
 
         }
 
+        // Get photo album
+        [HttpGet]
+        public async Task<ActionResult> GetFriendsList()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:24260/");
+                client.DefaultRequestHeaders.Accept.Clear();
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                var response = await client.GetAsync("/api/Profiles/GetFriendsList");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Session["ProfilesList"] = await response.Content.ReadAsAsync<List<ProfileViewModel>>();
+
+                    return RedirectToAction("FriendsList", "Profile");
+                }
+                return View("Error");
+            }
+
+        }
+
         public ActionResult Gallery()
         {
             List<string> album = (List<string>)Session["BlobsList"];
             ViewBag.album = album;
             return View();
+        }
+
+        public async Task<ActionResult> ProfileFromListPage(int id)
+        {
+            ActionResult x = await GetProfileById(id);
+            Profile p = (Profile)Session["ProfileById"];
+            ProfileViewModel profile = new ProfileViewModel()
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                PictureUrl = p.PicutreUrl,
+                BirthDate = p.BirthDate.ToString("dd/mm/yyyy")
+            };
+            return View(profile);
         }
 
     }

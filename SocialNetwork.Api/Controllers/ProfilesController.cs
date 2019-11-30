@@ -186,11 +186,30 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [Route("UserInfo")]
-        public Profile GetProfileById()
+        public Profile GetProfile()
         {
             var accountId = User.Identity.GetUserId();
             Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
             return p;
+        }
+
+        [Route("GetProfileById/{id}")]
+        public Profile GetProfileById(int id)
+        {
+            Profile p = (from x in _dataContext.Profile where x.Id == id select x).FirstOrDefault();
+            return p;
+        }
+
+        [Route("GetFriendsList")]
+        public List<Profile> GetFriendsList()
+        {
+            var profile = _dataContext.Profile;
+            List<Profile> profilesList = new List<Profile>();
+            foreach(var p in profile)
+            {
+                profilesList.Add(p);
+            }
+            return profilesList;
         }
     }
 }

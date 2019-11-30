@@ -185,6 +185,8 @@
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\Create.cshtml" />
     <Content Include="Views\Images\Create.cshtml" />
+    <Content Include="Views\Profile\FriendsList.cshtml" />
+    <Content Include="Views\Profile\ProfileFromListPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

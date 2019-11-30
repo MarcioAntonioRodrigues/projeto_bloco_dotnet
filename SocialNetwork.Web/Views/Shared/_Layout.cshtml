@@ -43,10 +43,12 @@
                         }
                         else
                         {
-                            <li>
-                                @Html.ActionLink("Home", "Index", "Home")
-                            </li>
-                            if(Session["Profile"] != null)
+                                <li>
+                                    <i class="fa fa-home" aria-hidden="true" title="Home">
+                                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "transparent" })
+                                    </i>
+                                </li>
+                            if (Session["Profile"] != null)
                             {
                                 <li>
                                     <i class="fa fa-user" aria-hidden="true" title="Perfil">
@@ -54,6 +56,11 @@
                                     </i>
                                 </li>
                             }
+                            <li>
+                                <i class="fa fa-users" aria-hidden="true" title="Lista de usuários">
+                                    @Html.ActionLink("FriendsList", "FriendsList", "Profile", null, new { @class = "transparent" })
+                                </i>
+                            </li>
                             <li>
                                 <i class="fa fa-sign-out" aria-hidden="true" title="Sair">
                                     @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "transparent" })
