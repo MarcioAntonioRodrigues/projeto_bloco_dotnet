@@ -4,47 +4,39 @@
     ViewBag.Title = "ProfileFromListPage";
 }
 
-<h2>ProfileFromListPage</h2>
 
 <div>
-    <h4>ProfileViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PictureUrl)
-        </dt>
-
-        <dd>
-            <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
-        </dd>
-
-    </dl>
+    <div class="image-container">
+        <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
+    </div>
+    <h2 class="profile-name">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+    <section class="menu-perfil">
+        <ul>
+            <li>Linha do tempo</li>
+            <li>Sobre</li>
+            <li>Amigos</li>
+            <li>Galerias</li>
+            <li>Mais</li>
+        </ul>
+    </section>
+    <section class="apresentacao">
+        <h4>
+            <i class="fa fa-globe" aria-hidden="true"></i>
+            Apresentação
+        </h4>
+        <ul>
+            <li>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Mora em Rio de janeiro
+            </li>
+            <li>
+                <i class="fa fa-rss" aria-hidden="true"></i>
+                Seguido por 50 pessoas
+            </li>
+            <li>Nasceu em @Html.DisplayFor(model => model.BirthDate)</li>
+        </ul>
+    </section>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "FriendsList")
 </p>

@@ -339,6 +339,10 @@
       <Project>{E2602D2B-781B-4A22-9E52-FECCDD089DCF}</Project>
       <Name>SocialNetwork.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SocialNetwork.Web\SocialNetwork.Web.csproj">
+      <Project>{198AB427-1AB9-4E05-8249-A9CBA15EC68E}</Project>
+      <Name>SocialNetwork.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910212347253_InitialCreate.resx">

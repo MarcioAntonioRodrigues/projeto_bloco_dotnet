@@ -615,3 +615,6 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.csproj.CopyComplete
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.dll
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\obj\Debug\SocialNetwork.Api.pdb
+C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll
+C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.pdb
+C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll.config

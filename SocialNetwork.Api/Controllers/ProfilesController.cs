@@ -7,6 +7,7 @@ using SocialNetwork.Api.Data;
 using SocialNetwork.Api.Models;
 using SocialNetwork.Core.Models;
 using SocialNetwork.Data.Repositories;
+using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -201,13 +202,20 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [Route("GetFriendsList")]
-        public List<Profile> GetFriendsList()
+        public List<ProfileViewModel> GetFriendsList()
         {
             var profile = _dataContext.Profile;
-            List<Profile> profilesList = new List<Profile>();
+            List<ProfileViewModel> profilesList = new List<ProfileViewModel>();
             foreach(var p in profile)
             {
-                profilesList.Add(p);
+                ProfileViewModel profileBind = new ProfileViewModel()
+                {
+                    BirthDate = p.BirthDate.ToString("dd/mm/yyyy"),
+                    FirstName = p.FirstName,
+                    LastName = p.LastName,
+                    PictureUrl = p.PicutreUrl
+                };
+                profilesList.Add(profileBind);
             }
             return profilesList;
         }

@@ -4,46 +4,21 @@
     ViewBag.Title = "FriendsList";
 }
 
-<h2>FriendsList</h2>
+<h2>Lista de amigos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PictureUrl)
-        </th>
-        <th></th>
-    </tr>
+<section class="friends-list">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PictureUrl)
-        </td>
-        <td>
-            @Html.ActionLink("Detalhes", "ProfileFromListPage", new { @id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    @foreach (var item in Model)
+    {
+        <div class="image-container">
+            <img class="foto-perfil miniatura" src="@Url.Content(item.PictureUrl)" />
+        </div>
+        <div>
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+            <p>Rio de Janeiro</p>
+        </div>
+        <div>
+            @Html.ActionLink("Detalhes", "ProfileFromListPage", new { @id = item.Id })
+        </div>
+    }
+</section>
