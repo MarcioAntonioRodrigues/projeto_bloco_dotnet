@@ -26,7 +26,7 @@ namespace SocialNetwork.Web.Controllers
             }
             else
             {
-                ActionResult x = await GetGalleries();
+                ActionResult x = await GetLogedUserGalleries();
                 IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
                 return View(gals);
             }
@@ -172,7 +172,7 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-        public async Task<ActionResult> GetGalleries()
+        public async Task<ActionResult> GetLogedUserGalleries()
         {
             string access_token = Session["access_token"]?.ToString();
 
@@ -200,6 +200,34 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
+        public async Task<ActionResult> GetGalleriesById(int id)
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (!string.IsNullOrEmpty(access_token))
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Gallery/GetGalleriesById/" + id );
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Session["Galleries"] = await response.Content.ReadAsAsync<List<GalleryViewModel>>();
+
+                        return RedirectToAction("Index", "Gallery");
+                    }
+
+                    return View("Error");
+                }
+            }
+            return RedirectToAction("Index", "Profile");
+        }
+
         public GalleryViewModel GetGallery(int id)
         {
             IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
@@ -212,11 +240,12 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Create", "Images");
         }
 
-        public async Task<ActionResult> GetGalleriesById(int id)
+        public async Task<ActionResult> GetGalleriesByUserId(int id)
         {
-            ActionResult x = await GetGalleries();
+            ActionResult x = await GetGalleriesById(id);
             IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
-            Session["Galleries"] = gals.Where(g => g.ProfileId == id).ToList();
+            IEnumerable<GalleryViewModel> galsById = gals.Where(g => g.ProfileId == id).ToList();
+            Session["GalleriesById"] = galsById;
             return RedirectToAction("GallerYPageById");
         }
 
@@ -230,7 +259,7 @@ namespace SocialNetwork.Web.Controllers
             }
             else
             {
-                IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
+                IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["GalleriesById"];
                 return View(gals);
             }
         }

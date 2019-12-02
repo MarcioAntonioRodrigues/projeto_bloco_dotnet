@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace SocialNetwork.Api.Controllers
 {
+    [RoutePrefix("api/Gallery")]
     public class GalleryController : ApiController
     {
         private DataContext _dataContext;
@@ -28,6 +29,28 @@ namespace SocialNetwork.Api.Controllers
             Profile p = _dataContext.Profile.Where(c => c.AccountId == accountId).FirstOrDefault();
 
             var dataGallery = _dataContext.Gallery.Where(g => g.ProfileId == p.Id).ToList();
+
+            List<GalleryBindModel> ProfileGallery = new List<GalleryBindModel>();
+
+            foreach (var gal in dataGallery)
+            {
+                GalleryBindModel gallery = new GalleryBindModel()
+                {
+                    GalleryId = gal.GalleryId,
+                    Name = gal.Name,
+                    ProfileId = gal.ProfileId
+                };
+                ProfileGallery.Add(gallery);
+            }
+
+            return ProfileGallery;
+        }
+
+        // GET: api/Gallery
+        [Route("GetGalleriesById/{id}")]
+        public IEnumerable<GalleryBindModel> GetGalleriesById(int id)
+        {
+            var dataGallery = _dataContext.Gallery.Where(g => g.ProfileId == id).ToList();
 
             List<GalleryBindModel> ProfileGallery = new List<GalleryBindModel>();
 
