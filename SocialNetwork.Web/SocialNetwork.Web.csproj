@@ -180,13 +180,13 @@
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Profile\Gallery.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\Details.cshtml" />
     <Content Include="Views\Gallery\Create.cshtml" />
     <Content Include="Views\Images\Create.cshtml" />
     <Content Include="Views\Profile\FriendsList.cshtml" />
     <Content Include="Views\Profile\ProfileFromListPage.cshtml" />
+    <Content Include="Views\Gallery\GallerYPageById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

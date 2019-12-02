@@ -208,8 +208,18 @@ section.apresentacao ul
     list-style: none;
 }
 
-section.friends-list
+section.friends-list ul li
 {
     display: flex;
     align-items: center;
+}
+
+section.friends-list ul li div
+{
+    margin-right:20px; 
+}
+
+section.friends-list ul li div:nth-child(2)
+{
+    min-width:100px;
 }

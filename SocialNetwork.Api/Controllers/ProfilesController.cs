@@ -210,6 +210,7 @@ namespace SocialNetwork.Api.Controllers
             {
                 ProfileViewModel profileBind = new ProfileViewModel()
                 {
+                    Id = p.Id,
                     BirthDate = p.BirthDate.ToString("dd/mm/yyyy"),
                     FirstName = p.FirstName,
                     LastName = p.LastName,

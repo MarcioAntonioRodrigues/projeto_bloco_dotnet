@@ -172,7 +172,6 @@ namespace SocialNetwork.Web.Controllers
             return RedirectToAction("Index", "Profile");
         }
 
-
         public async Task<ActionResult> GetGalleries()
         {
             string access_token = Session["access_token"]?.ToString();
@@ -212,5 +211,29 @@ namespace SocialNetwork.Web.Controllers
         {
             return RedirectToAction("Create", "Images");
         }
+
+        public async Task<ActionResult> GetGalleriesById(int id)
+        {
+            ActionResult x = await GetGalleries();
+            IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
+            Session["Galleries"] = gals.Where(g => g.ProfileId == id).ToList();
+            return RedirectToAction("GallerYPageById");
+        }
+
+        public ActionResult GallerYPageById()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                IEnumerable<GalleryViewModel> gals = (IEnumerable<GalleryViewModel>)Session["Galleries"];
+                return View(gals);
+            }
+        }
+
     }
 }

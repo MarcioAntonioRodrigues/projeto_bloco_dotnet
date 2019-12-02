@@ -4,21 +4,30 @@
     ViewBag.Title = "FriendsList";
 }
 
-<h2>Lista de amigos</h2>
+<h2>Pessoas</h2>
 
 <section class="friends-list">
-
-    @foreach (var item in Model)
-    {
-        <div class="image-container">
-            <img class="foto-perfil miniatura" src="@Url.Content(item.PictureUrl)" />
-        </div>
-        <div>
-            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
-            <p>Rio de Janeiro</p>
-        </div>
-        <div>
-            @Html.ActionLink("Detalhes", "ProfileFromListPage", new { @id = item.Id })
-        </div>
-    }
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item">
+                <div class="image-container">
+                    <img class="foto-perfil miniatura" src="@Url.Content(item.PictureUrl)" />
+                </div>
+                <div>
+                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                    <p>Rio de Janeiro</p>
+                </div>
+                <div>
+                    @Html.ActionLink("Detalhes", "ProfileFromListPage", new { @id = item.Id })
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Adicionar aos amigos
+                    </button>
+                </div>
+            </li>
+        }
+    </ul>
 </section>

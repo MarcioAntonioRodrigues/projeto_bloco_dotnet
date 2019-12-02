@@ -16,6 +16,13 @@ namespace SocialNetwork.Web.Controllers
 {
     public class ProfileController : Controller
     {
+        private GalleryController GalleryController;
+
+        public ProfileController()
+        {
+            GalleryController = new GalleryController();
+        }
+
         //FriendsList view
         public async Task<ActionResult> FriendsList()
         {
@@ -293,39 +300,7 @@ namespace SocialNetwork.Web.Controllers
             return View();
         }
 
-        // Get photo album
-        [HttpGet]
-        public async Task<ActionResult> GetPhotoAlbum()
-        {
-            string access_token = Session["access_token"]?.ToString();
-
-            if (string.IsNullOrEmpty(access_token))
-            {
-                return RedirectToAction("Login", "Account", null);
-            }
-
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:24260/");
-                client.DefaultRequestHeaders.Accept.Clear();
-
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
-
-                var response = await client.GetAsync("/api/Profiles/GetBlobs");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    Session["BlobsList"] = await response.Content.ReadAsAsync<List<string>>();
-
-                    return RedirectToAction("Gallery", "Profile");
-                }
-
-                return View("Error");
-            }
-
-        }
-
-        // Get photo album
+        // Get Frinds List
         [HttpGet]
         public async Task<ActionResult> GetFriendsList()
         {
@@ -353,14 +328,6 @@ namespace SocialNetwork.Web.Controllers
                 }
                 return View("Error");
             }
-
-        }
-
-        public ActionResult Gallery()
-        {
-            List<string> album = (List<string>)Session["BlobsList"];
-            ViewBag.album = album;
-            return View();
         }
 
         public async Task<ActionResult> ProfileFromListPage(int id)
@@ -369,6 +336,7 @@ namespace SocialNetwork.Web.Controllers
             Profile p = (Profile)Session["ProfileById"];
             ProfileViewModel profile = new ProfileViewModel()
             {
+                Id = p.Id,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 PictureUrl = p.PicutreUrl,
@@ -376,6 +344,5 @@ namespace SocialNetwork.Web.Controllers
             };
             return View(profile);
         }
-
     }
 }

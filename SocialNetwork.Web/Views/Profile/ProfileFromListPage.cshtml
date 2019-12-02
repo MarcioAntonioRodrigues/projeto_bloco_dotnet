@@ -15,7 +15,9 @@
             <li>Linha do tempo</li>
             <li>Sobre</li>
             <li>Amigos</li>
-            <li>Galerias</li>
+            <li>
+                @Html.ActionLink("Galeria de imagens", "GetGalleriesById/" + Model.Id, "Gallery", null, null )
+            </li>
             <li>Mais</li>
         </ul>
     </section>
