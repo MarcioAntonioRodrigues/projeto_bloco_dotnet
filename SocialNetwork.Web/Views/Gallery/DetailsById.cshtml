@@ -1,0 +1,20 @@
+﻿@model SocialNetwork.Web.Models.GalleryViewModel
+
+@{
+    ViewBag.Title = "DetailsById";
+}
+
+<h2>Galeria de imagens</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+
+    <div>
+        @foreach (var image in Model.Images)
+        {
+            <a href="@Url.Content(image.Url)" target="blank">
+                <img class="foto-gallery" src="@Url.Content(image.Url)" />
+            </a>
+        }
+    </div>
+</div>

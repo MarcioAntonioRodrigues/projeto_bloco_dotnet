@@ -46,6 +46,7 @@
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\GalleryImage.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileGallery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

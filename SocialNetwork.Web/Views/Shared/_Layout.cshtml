@@ -43,10 +43,6 @@
                         }
                         else
                         {
-                                <li>
-                                    @*@Html.ActionLink(ViewBag.UserLoged, "Details", "Profile", null, new { @class = "transparent" })*@
-                                    @Html.Encode(User.Identity.Name)
-                                </li>
                             <li>
                                 <i class="fa fa-home" aria-hidden="true" title="Home">
                                     @Html.ActionLink("Home", "Index", "Home", null, new { @class = "transparent" })

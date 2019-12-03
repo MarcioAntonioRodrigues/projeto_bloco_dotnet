@@ -16,15 +16,17 @@
             <a href="@Url.Content(image.Url)" target="blank">
                 <img class="foto-gallery" src="@Url.Content(image.Url)" />
             </a>
-            @Html.ActionLink("Remover", "Delete/" + image.ImageId, "Images", null, null)
+            <p>
+                @Html.ActionLink("Remover", "Delete/" + image.ImageId, "Images", null, null)
+            </p>
         }
 
     </div>
-    <p>
-        @Html.ActionLink("Adicionar nova imagem", "AddImageToGallery")   
-    </p>
 
 </div>
+<p>
+    @Html.ActionLink("Adicionar nova imagem", "AddImageToGallery")   
+</p>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.GalleryId }) |*@
     @*@Html.ActionLink("Voltar para galerias", "Index")*@

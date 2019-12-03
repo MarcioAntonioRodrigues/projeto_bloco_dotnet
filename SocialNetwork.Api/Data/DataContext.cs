@@ -21,6 +21,7 @@ namespace SocialNetwork.Api.Data
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<Friend> Friend { get; set; }
         public DbSet<Image> Image { get; set; }
+        //public DbSet<Post> Post { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

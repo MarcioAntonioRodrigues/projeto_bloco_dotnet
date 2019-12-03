@@ -127,6 +127,7 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,9 +189,11 @@
     <Content Include="Views\Profile\ProfileFromListPage.cshtml" />
     <Content Include="Views\Gallery\GallerYPageById.cshtml" />
     <Content Include="Views\Images\Delete.cshtml" />
+    <Content Include="Views\Gallery\DetailsById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Posts\" />
     <Folder Include="Views\Values\" />
   </ItemGroup>
   <ItemGroup>

@@ -28,7 +28,7 @@ else
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Visitar galeria", "Details", new { id=item.GalleryId })
+                @Html.ActionLink("Visitar galeria", "DetailsById", new { id=item.GalleryId })
             </td>
         </tr>
     }

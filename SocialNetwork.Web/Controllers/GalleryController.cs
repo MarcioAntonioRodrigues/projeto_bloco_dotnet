@@ -33,6 +33,17 @@ namespace SocialNetwork.Web.Controllers
         }
 
         // GET: Gallery/Details/5
+        public async Task<ActionResult> DetailsById(int id)
+        {
+            ActionResult x = await GetImagesByGalleryId(id);
+            GalleryViewModel gallery = GetGallery(id);
+            ICollection<ImageViewModel> images = (ICollection<ImageViewModel>)Session["Images"];
+            gallery.Images = images;
+            Session["GalleryId"] = gallery.GalleryId;
+            return View(gallery);
+        }
+
+        // GET: Gallery/Details/5
         public async Task<ActionResult> Details(int id)
         {
             ActionResult x = await GetImagesByGalleryId(id);
