@@ -16,6 +16,8 @@ namespace SocialNetwork.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
+            Session["UserLoged"] = System.Web.HttpContext.Current.User.Identity.Name;
+
             ActionResult x = await BuscarPerfil();
 
              Access_token = Session["access_token"]?.ToString();

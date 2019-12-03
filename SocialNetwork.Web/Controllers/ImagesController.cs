@@ -117,25 +117,77 @@ namespace SocialNetwork.Web.Controllers
         }
 
         // GET: Images/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            ActionResult x = await GetImageById(id);
+            ImageViewModel image = (ImageViewModel)Session["Image"];
+            return View(image);
         }
 
         // POST: Images/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(int id, ImageViewModel image)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string access_token = Session["access_token"]?.ToString();
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (string.IsNullOrEmpty(access_token))
             {
-                return View();
+                return RedirectToAction("Login", "Account", null);
             }
+
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+                       
+                    var response = await client.DeleteAsync("/api/Images/" + id);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index", "Gallery");
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> GetImageById(int id)
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Images/GetImageById/" + id);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Session["Image"] = await response.Content.ReadAsAsync<ImageViewModel>();
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }

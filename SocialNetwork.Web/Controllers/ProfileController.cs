@@ -16,13 +16,6 @@ namespace SocialNetwork.Web.Controllers
 {
     public class ProfileController : Controller
     {
-        private GalleryController GalleryController;
-
-        public ProfileController()
-        {
-            GalleryController = new GalleryController();
-        }
-
         //FriendsList view
         public async Task<ActionResult> FriendsList()
         {

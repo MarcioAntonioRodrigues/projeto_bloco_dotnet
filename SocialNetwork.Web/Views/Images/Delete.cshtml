@@ -1,0 +1,29 @@
+﻿@model SocialNetwork.Web.Models.ImageViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Tem certeza que deseja deletar esta foto?</h2>
+<div>
+
+    <h4>
+        @Html.DisplayFor(model => model.Title)
+    </h4>
+
+    <img class="foto-gallery" src="@Url.Content(Model.Url)" />
+
+    <p>
+        @Html.DisplayFor(model => model.Subtitle)
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" />
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>

@@ -621,3 +621,6 @@ C:\Users\manoel\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNe
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.pdb
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll.config
+C:\Users\marcio.dsouza\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll
+C:\Users\marcio.dsouza\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.pdb
+C:\Users\marcio.dsouza\source\repos\projeto_bloco_dotnet\SocialNetwork.Api\bin\SocialNetwork.Web.dll.config

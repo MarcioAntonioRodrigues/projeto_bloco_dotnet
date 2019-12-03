@@ -187,6 +187,7 @@
     <Content Include="Views\Profile\FriendsList.cshtml" />
     <Content Include="Views\Profile\ProfileFromListPage.cshtml" />
     <Content Include="Views\Gallery\GallerYPageById.cshtml" />
+    <Content Include="Views\Images\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

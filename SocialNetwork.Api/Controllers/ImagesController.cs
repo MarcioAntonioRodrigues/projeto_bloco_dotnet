@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using SocialNetwork.Api.Data;
 using SocialNetwork.Api.Models;
 using SocialNetwork.Core.Models;
+using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ using System.Web.Http;
 
 namespace SocialNetwork.Api.Controllers
 {
+    [RoutePrefix("api/Images")]
     public class ImagesController : ApiController
     {
         private DataContext _dataContext;
@@ -109,6 +111,26 @@ namespace SocialNetwork.Api.Controllers
         // DELETE: api/Images/5
         public void Delete(int id)
         {
+            Image image = _dataContext.Image.Where(i => i.ImageId == id).FirstOrDefault();
+            if(image != null)
+            {
+                _dataContext.Image.Remove(image);
+                _dataContext.SaveChanges();
+            }
         }
+        [Route("GetImageById/{id}")]
+        public ImageViewModel GetImageById(int id)
+        {
+            Image imageBind = _dataContext.Image.Where(i => i.ImageId == id).FirstOrDefault();
+            ImageViewModel image = new ImageViewModel()
+            {
+                ImageId = imageBind.ImageId,
+                Title = imageBind.Title,
+                Subtitle = imageBind.Subtitle,
+                Url = imageBind.Url
+            };
+            return image;
+        }
+
     }
 }
