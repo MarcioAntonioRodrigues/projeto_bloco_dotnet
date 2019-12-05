@@ -248,6 +248,13 @@
     <Content Include="App_Data\aspnet-SocialNetwork.Api-20190830100651_log.ldf">
       <DependentUpon>aspnet-SocialNetwork.Api-20190830100651.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\backup.ldf">
+      <DependentUpon>backup.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\backup.mdf" />
+    <Content Include="App_Data\backup_log.ldf">
+      <DependentUpon>backup.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
