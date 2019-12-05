@@ -12,16 +12,19 @@ namespace SocialNetwork.Api.Data
 {
     public class DataContext : DbContext
     {
+
         public DataContext()
             : base("DefaultConnection")
         {
+            Database.SetInitializer<DataContext>(new DropCreateDatabaseIfModelChanges<DataContext>());
         }
 
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
         public DbSet<Friend> Friend { get; set; }
         public DbSet<Image> Image { get; set; }
-        //public DbSet<Post> Post { get; set; }
+        public DbSet<Post> Post { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
