@@ -15,9 +15,11 @@ namespace SocialNetwork.Web.Controllers
     public class PostsController : Controller
     {
         // GET: Posts
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            ActionResult x = await GetPostsFromUser();
+            List<PostViewModel> postsList = (List<PostViewModel>)Session["Posts"];
+            return View(postsList);
         }
 
         // GET: Posts/Details/5
@@ -29,7 +31,17 @@ namespace SocialNetwork.Web.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            return View();
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         // POST: Posts/Create
@@ -80,7 +92,7 @@ namespace SocialNetwork.Web.Controllers
 
                         if (response.IsSuccessStatusCode)
                         {
-                            return RedirectToAction("Index", "Gallery");
+                            return RedirectToAction("Index", "Home");
                         }
                         else
                         {
@@ -134,6 +146,38 @@ namespace SocialNetwork.Web.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<ActionResult> GetPostsFromUser()
+        {
+            string access_token = Session["access_token"]?.ToString();
+
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+
+                    var response = await client.GetAsync("/api/Posts");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Session["Posts"] = await response.Content.ReadAsAsync<List<PostViewModel>>();
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }

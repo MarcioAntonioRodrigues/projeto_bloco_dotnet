@@ -48,7 +48,7 @@ namespace SocialNetwork.Web.Controllers
                             var responseContent = await response.Content.ReadAsStringAsync();
                             var tokenData = JObject.Parse(responseContent);
                             Session.Add("access_token", tokenData["access_token"]);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Posts");
                         }
                         return View("Error");
                     }

@@ -1,4 +1,5 @@
 ﻿using SocialNetwork.Core.Models;
+using SocialNetwork.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace SocialNetwork.Web.Controllers
             }
             else
             {
+                List<PostViewModel> postsList = (List <PostViewModel> )Session["Posts"];
+                ViewBag.Posts = postsList;
                 return View();
             }
         }
