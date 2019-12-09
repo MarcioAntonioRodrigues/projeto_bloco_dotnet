@@ -27,3 +27,4 @@ C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\bin
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csproj.CoreCompileInputs.cache
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.dll
 C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.pdb
+C:\Users\marcio.souza\Desktop\INFNET\projeto_bloco_dotnet\SocialNetwork.Core\obj\Debug\SocialNetwork.Core.csprojAssemblyReference.cache
