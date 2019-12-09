@@ -110,9 +110,11 @@ namespace SocialNetwork.Web.Controllers
         }
 
         //Proflie details
-        public ActionResult Details()
+        public async Task<ActionResult> Details()
         {
             ProfileViewModel profile = (ProfileViewModel)Session["Profile"]; ;
+            List<PostViewModel> postsList = await GetPostsByUserId(profile.Id);
+            ViewBag.PostsList = postsList;
             return View(profile);
         }
 
@@ -303,6 +305,8 @@ namespace SocialNetwork.Web.Controllers
 
         public async Task<ActionResult> ProfileFromListPage(int id)
         {
+            List<PostViewModel> postsList = await GetPostsByUserId(id);
+            ViewBag.PostsList = postsList;
             ActionResult x = await GetProfileById(id);
             Profile p = (Profile)Session["ProfileById"];
             ProfileViewModel profile = new ProfileViewModel()
@@ -314,6 +318,35 @@ namespace SocialNetwork.Web.Controllers
                 BirthDate = p.BirthDate.ToString("dd/mm/yyyy")
             };
             return View(profile);
+        }
+
+        public async Task<List<PostViewModel>> GetPostsByUserId(int id)
+        {
+            string access_token = Session["access_token"]?.ToString();
+            if (string.IsNullOrEmpty(access_token))
+            {
+                return null;
+            }
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:24260/");
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{access_token}");
+                    var response = await client.GetAsync("/api/Posts/GetPostsByUserId/" + id);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        List<PostViewModel> postslist = await response.Content.ReadAsAsync<List<PostViewModel>>();
+                        return postslist;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            return null;
         }
     }
 }

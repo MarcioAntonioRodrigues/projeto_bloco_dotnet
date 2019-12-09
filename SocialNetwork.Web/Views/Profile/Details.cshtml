@@ -3,13 +3,16 @@
 
 @{
     ViewBag.Title = "Details";
+    var posts = ViewBag.PostsList;
 }
 
 <div>
-    <div class="image-container">
-        <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
-    </div>
-    <h2 class="profile-name">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+    <section class="profile-information">
+        <div class="image-container">
+            <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
+        </div>
+        <h2 class="profile-name">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+    </section>
     <section class="menu-perfil">
         <ul>
             <li>Linha do tempo</li>
@@ -21,21 +24,84 @@
             <li>@Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id })</li>
         </ul>
     </section>
-    <section class="apresentacao">
-        <h4>
-            <i class="fa fa-globe" aria-hidden="true"></i>
-            Apresentação
-        </h4>
-        <ul>
-            <li>
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                Mora em Rio de janeiro
-            </li>
-            <li>
-                <i class="fa fa-rss" aria-hidden="true"></i>
-                Seguido por 50 pessoas
-            </li>
-            <li>Nasceu em @Html.DisplayFor(model => model.BirthDate)</li>
-        </ul>
-    </section>
+    <main class="user-details">
+        <section class="apresentacao">
+            <h4>
+                <i class="fa fa-globe" aria-hidden="true"></i>
+                Apresentação
+            </h4>
+            <ul>
+                <li>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    Mora em Rio de janeiro
+                </li>
+                <li>
+                    <i class="fa fa-rss" aria-hidden="true"></i>
+                    Seguido por 50 pessoas
+                </li>
+                <li>Nasceu em @Html.DisplayFor(model => model.BirthDate)</li>
+            </ul>
+        </section>
+        <section>
+            @foreach (var p in posts)
+            {
+            <div class="postagem user-details">
+                <div class="cabecalho">
+                    <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
+                    <span>
+                        <p>@Model.FirstName @Model.LastName</p>
+                        <p>Hoje às 9:55 AM</p>
+                    </span>
+                </div>
+                <div class="content">
+                    <h4>
+                        @p.Title
+                    </h4>
+                    <div class="performance-data">
+                        <span>
+                            <p>
+                                Categoria
+                            </p>
+                            <p>
+                                @p.Category
+                            </p>
+                        </span>
+                        <span>
+                            <p>
+                                Distância
+                            </p>
+                            <p>
+                                @p.Distance
+                            </p>
+                        </span>
+                        <span>
+                            <p>
+                                Velocidade máxima
+                            </p>
+                            <p>
+                                @p.AverageSpeed
+                            </p>
+                        </span>
+                    </div>
+                    <img src="@Url.Content(@p.PictureUrl)" />
+                    <div class="react">
+                        <span>
+                            <p>
+                                20 Kudos - 1 comentário
+                            </p>
+                        </span>
+                        <span>
+                            <button class="btn">
+                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn">
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            }
+        </section>
+    </main>
 </div>

@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: #F1F4FFFF;
+    background: #ddd;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -28,13 +28,24 @@ textarea {
     max-width: 280px;
 }
 
+main.user-details
+{
+    display:flex;
+    margin-top:20px;
+}
+
+main.user-details section:first-child
+{
+    margin-right:20px;
+}
+
 footer 
 {
+    left: 0;
     bottom: 0;
     width: 100%;
     width: 100%;
     position: fixed;
-    background: #F1F4FFFF;
 }
 footer hr
 {
@@ -67,13 +78,20 @@ div.social-menu-bar ul.options-page a:hover
 {
     color: #ff5400
 }
-
-div.image-container
+section.profile-information {
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    background-image: url("https://trek.scene7.com/is/image/TrekBicycleProducts/07-10%20Apparel_Marquee_Refresh_ShortsBibs2_SLIM?$responsive-pjpg$&cache=on,on&wid=1920")
+}
+div.image-container 
 {
-    width: fit-content;
-    border-radius:50%;
-    border: 1px solid #808080;
     margin: 10px 0;
+    background:#fff;
+    width: fit-content;
+    border-radius: 50%;
+    border: 1px solid #808080;
 }
 
 .foto-perfil 
@@ -185,6 +203,7 @@ section.apresentacao
 
 h2.profile-name
 {
+    color:#fff;
     margin-top: -10px;
 }
 section.menu-perfil {
@@ -314,7 +333,7 @@ div.post-buttons
     margin: 0 auto;
     width: fit-content;
 }
-div.postagem 
+div.postagem
 {
     width: 600px;
     margin: 0 auto 20px;
@@ -382,4 +401,11 @@ div.postagem div.content div.react
     display: flex;
     padding-bottom:10px;
     justify-content: space-between;
+}
+
+/*POSTAGENS DE UM USUÁRIO*/
+div.postagem.user-details
+{
+    width: 100%;
+    min-width: 800px;
 }
