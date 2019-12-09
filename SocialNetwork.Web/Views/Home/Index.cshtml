@@ -1,50 +1,133 @@
 ﻿@{
     ViewBag.Title = "Home Page";
     var profile = ViewBag.profile;
+    var posts = ViewBag.Posts;
+    var logedUser = ViewBag.profileFromLogedUser;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12 principal">
 
-        @{
-            if (Session["Profile"] == null)
-            {
-                <h2>Criar perfil</h2>
+        <section class="aside-menu">
+            <img class="foto-perfil" src="@Url.Content(@logedUser.PictureUrl)" />
+            <h4>@logedUser.FirstName @logedUser.LastName</h4>
+            <div class="general-information">
+                <span>
+                    <p>Seguindo</p>
+                    <p>65</p>
+                </span>
+                <span>
+                    <p>Seguidores</p>
+                    <p>27</p>
+                </span>
+                <span>
+                    <p>Atividades</p>
+                    <p>102</p>
+                </span>
+            </div>
+            <hr />
+            <div>
+                <p>Última atividade</p>
+                <p>Pedalada vespertina - Ontem</p>
+            </div>
+            <hr />
+            <div>
                 <p>
-                    Novo por aqui? Comece a utilizar o Destrava criando o seu perfil clicando no botão abaixo.
+                    Registro de treinamento
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </p>
-                <p>@Html.ActionLink("Criar perfil", "Create", "Profile")</p>
+            </div>
+        </section>
+        <section class="area-central">
+            @{
+                if (Session["Profile"] == null)
+                {
+                    <h2>Criar perfil</h2>
+                    <p>
+                        Novo por aqui? Comece a utilizar o Destrava criando o seu perfil clicando no botão abaixo.
+                    </p>
+                    <p>@Html.ActionLink("Criar perfil", "Create", "Profile")</p>
+                }
+                else
+                {
+                    <div class="criar-postagem">
+                        <input type="text" placeholder="No que você está pensando @logedUser.FirstName?" />
+                        <div class="post-buttons">
+                            <button class="btn">
+                                <i class="fa fa-bicycle" aria-hidden="true"></i>
+                                <p>@Html.ActionLink("Registrar treino", "Create", "Posts")</p>
+                            </button>
+                            <button class="btn">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                <p>@Html.ActionLink("Criar galeria", "Create", "Gallery")</p>
+                            </button>
+                            <button class="btn">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                <p>Marcar amigos</p>
+                            </button>
+                        </div>
+                    </div>
+                    foreach (var p in posts)
+                    {
+                        <div class="postagem">
+                            <div class="cabecalho">
+                                <img class="foto-perfil" src="@Url.Content(@p.Profile.PictureUrl)" />
+                                <span>
+                                    <p>@p.Profile.FirstName @p.Profile.LastName</p>
+                                    <p>Hoje às 9:55 AM</p>
+                                </span>
+                            </div>
+                            <div class="content">
+                                <h4>
+                                    @p.Title
+                                </h4>
+                                <div class="performance-data">
+                                    <span>
+                                        <p>
+                                            Categoria
+                                        </p>
+                                        <p>
+                                            @p.Category
+                                        </p>
+                                    </span>
+                                    <span>
+                                        <p>
+                                            Distância
+                                        </p>
+                                        <p>
+                                            @p.Distance
+                                        </p>
+                                    </span>
+                                    <span>
+                                        <p>
+                                            Velocidade máxima
+                                        </p>
+                                        <p>
+                                            @p.AverageSpeed
+                                        </p>
+                                    </span>
+                                </div>
+                                <img src="@Url.Content(@p.PictureUrl)" />
+                                <div class="react">
+                                    <span>
+                                        <p>
+                                            20 Kudos - 1 comentário
+                                        </p>
+                                    </span>
+                                    <span>
+                                        <button class="btn">
+                                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn">
+                                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             }
-            else
-            {
-                <p>@Html.ActionLink("Criar postagem", "Create", "Posts")</p>
-
-
-
-                @*<p>@Html.ActionLink("Acessar perfil", "BuscarPerfil", "Profile", new { value = "Details" }, null)</p>
-                <p>@Html.ActionLink("Editar perfil", "BuscarPerfil2", "Profile", new { value = "Edit" }, null)</p>
-                <p>@Html.ActionLink("Galeria de imagens", "GetPhotoAlbum", "Profile", new { value = "GetPhotoAlbum" }, null)</p>*@
-
-                @*<p>@Html.ActionLink("Acessar perfil", "SetValueParameter", "Profile", new { value = "Details"}, null)</p>
-                <p>@Html.ActionLink("Editar perfil", "SetValueParameter", "Profile", new { value = "Edit" }, null)</p>*@
-            }
-        }
-
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </section>
     </div>
 </div>

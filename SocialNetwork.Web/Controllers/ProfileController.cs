@@ -112,21 +112,7 @@ namespace SocialNetwork.Web.Controllers
         //Proflie details
         public ActionResult Details()
         {
-            string defaultProfileUrl = "https://marcioarmazenamento.blob.core.windows.net/api-amigo-fotos/profile.jpg";
-            Profile p = (Profile)Session["Profile"];
-            ProfileViewModel profile = new ProfileViewModel();
-            profile.FirstName = p.FirstName;
-            profile.LastName = p.LastName;
-            profile.BirthDate = p.BirthDate.ToString("dd/MM");
-            if(p.PicutreUrl != null)
-            {
-                ViewBag.PictureUrl = p.PicutreUrl;
-            }
-            else
-            {
-                ViewBag.PictureUrl = defaultProfileUrl;
-            }
-
+            ProfileViewModel profile = (ProfileViewModel)Session["Profile"]; ;
             return View(profile);
         }
 
@@ -220,15 +206,7 @@ namespace SocialNetwork.Web.Controllers
         //Edit profile view
         public ActionResult Edit()
         {
-            Profile p = (Profile)Session["Profile"];
-            ProfileViewModel profile = new ProfileViewModel
-            {
-                FirstName = p.FirstName,
-                LastName = p.LastName,
-                BirthDate = p.BirthDate.ToString("dd/MM"),
-                PictureUrl = p.PicutreUrl
-            };
-            ViewBag.ProfilePicture = p.PicutreUrl;
+            ProfileViewModel profile = (ProfileViewModel)Session["Profile"];
             return View(profile);
         }
 

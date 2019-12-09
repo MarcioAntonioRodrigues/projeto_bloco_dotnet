@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialNetwork.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,5 +16,6 @@ namespace SocialNetwork.Web.Models
         public string Distance { get; set; }
         public string AverageSpeed { get; set; }
         public int ProfileId { get; set; }
+        public ProfileViewModel Profile { get; set; }
     }
 }

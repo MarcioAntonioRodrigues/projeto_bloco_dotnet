@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace SocialNetwork.Api.Controllers
 {
+    [RoutePrefix("api/Posts")]
     public class PostsController : ApiController
     {
         private DataContext _dataContext;
@@ -106,6 +107,32 @@ namespace SocialNetwork.Api.Controllers
         // DELETE: api/Posts/5
         public void Delete(int id)
         {
+        }
+
+        // GET: api/Posts
+        [Route("GetAllPosts")]
+        public List<PostViewModel> GetAllPosts()
+        {
+            List<Post> Postslist = _dataContext.Post.ToList();
+            List<PostViewModel> ModeList = new List<PostViewModel>();
+
+            foreach (var post in Postslist)
+            {
+                PostViewModel postModel = new PostViewModel()
+                {
+                    PictureUrl = post.PictureUrl,
+                    Title = post.Title,
+                    Description = post.Description,
+                    Distance = post.Distance,
+                    AverageSpeed = post.AverageSpeed,
+                    Category = post.Category,
+                    ProfileId = post.ProfileId
+                };
+
+                ModeList.Add(postModel);
+            }
+
+            return ModeList;
         }
     }
 }

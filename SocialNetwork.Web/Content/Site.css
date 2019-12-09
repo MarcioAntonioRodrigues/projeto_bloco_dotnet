@@ -1,13 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #F1F4FFFF;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 100px;
+    margin-top: 30px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -31,18 +32,30 @@ footer
 {
     bottom: 0;
     width: 100%;
-    max-width: 800px;
+    width: 100%;
+    position: fixed;
+    background: #F1F4FFFF;
 }
-
+footer hr
+{
+    margin-top:0;
+}
 .navbar-collapse
 {
     min-height: 85px;
 }
-
+div.principal
+{
+    display:flex;
+}
+section.area-central
+{
+    margin-left:300px;
+}
 div.social-menu-bar 
 {
     background-color: #ff5400;
-    height: 110px;
+    height: 60px;
 }
 
 div.social-menu-bar a
@@ -87,7 +100,7 @@ div.login-form
 {
     display: flex;
     padding: 10px;
-    margin-top: 10px;
+    margin-top:20px;
 }
 
 div.login-form span label
@@ -102,7 +115,7 @@ div.login-form input
     margin: 0 10px;
     border: none;
     padding: 5px;
-    height: 40px;
+    height: 30px;
     border-radius: 2px;
 }
 
@@ -110,7 +123,6 @@ div.login-form input:nth-child(3)
 {
     color: #fff;
     width: 60px;
-    margin-top: 25px;
     font-weight: bold;
     background: #b3430c;
     box-shadow: 0px 0px 1px 0px black;
@@ -119,7 +131,7 @@ div.login-form input:nth-child(3)
 ul.options-page 
 {
     float: right;
-    margin-top: 10px;
+    margin-top:-15px;
 }
 
 ul.options-page i 
@@ -156,8 +168,7 @@ ul.options-page a
 
 img.logotipo 
 {
-    margin-top: 10px;
-    width: 200px;
+    width: 130px;
 }
 
 form
@@ -169,7 +180,7 @@ section.apresentacao
     width:350px;
     height:200px;
     border-radius: 3px;
-    background: #e9ebee;
+    background: #fff;
 }
 
 h2.profile-name
@@ -180,7 +191,7 @@ section.menu-perfil {
     width: 100%;
     height: 40px;
     border-radius: 3px;
-    background: #e9ebee;
+    background: #fff;
 }
 
 section.menu-perfil ul
@@ -222,4 +233,153 @@ section.friends-list ul li div
 section.friends-list ul li div:nth-child(2)
 {
     min-width:100px;
+}
+
+/*///// posts //////*/
+div.criar-postagem 
+{
+    width: 600px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 5px;
+    text-align:center;
+    padding: 20px 0 10px;
+}
+section.aside-menu
+{
+    width:280px;
+    height:400px;
+    position:fixed;
+    background: #fff;
+    margin-right:10px;
+    border-radius: 3px;
+    text-align: center;
+}
+section.aside-menu div
+{
+    margin:10px 0;
+    padding:10px;
+}
+section.aside-menu hr
+{
+    margin:0;
+}
+section.aside-menu div.general-information
+{
+    display: flex;
+    padding: 0 30px;
+    justify-content: space-between;
+}
+section.aside-menu div.general-information span p:nth-child(1)
+{
+    color: #606065;
+    font-size: 12px;
+}
+section.aside-menu div.general-information span p:nth-child(2)
+{
+    font-size:30px;
+}
+section.aside-menu img.foto-perfil 
+{
+    width: 100px;
+    height: 100px;
+    margin-top:10px;
+}
+div.criar-postagem input
+{
+    width:100%;
+    border:none;
+    margin:10px;
+    max-width:450px;
+    border-bottom:1px solid gray;
+}
+
+div.criar-postagem button
+{
+    display:flex;
+    margin:10px;
+    align-items:center;
+}
+div.criar-postagem button p
+{
+    margin: 0 5px;
+}
+div.criar-postagem button p a
+{
+    color:#333;
+}
+div.post-buttons 
+{
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+}
+div.postagem 
+{
+    width: 600px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius:5px;
+}
+div.postagem:last-child
+{
+    margin-bottom:50px;
+}
+div.postagem h4
+{
+    font-weight: bold;
+}
+div.postagem div.cabecalho
+{
+    display:flex;
+    align-items:center;
+}
+div.postagem div.content
+{
+    padding:0 20px;
+}
+div.postagem div.content div.performance-data
+{
+    display:flex;
+}
+div.postagem div.content div.performance-data span
+{
+    margin-right: 10px;
+    border-right: 1px solid gray;
+    padding:10px;
+}
+div.postagem div.content div.performance-data span:last-child
+{
+    border-right: none;
+}
+div.postagem div.content div.performance-data span p:first-child 
+{
+    color: #606065;
+    font-size:12px;
+}
+div.postagem div.content div.performance-data span p:nth-child(2)
+{
+    font-size:16px;
+    margin:0;
+}
+div.postagem img
+{
+    width:100%;
+    height: 300px;
+    border-radius:3px;
+    margin:10px 0;
+}
+div.postagem img.foto-perfil
+{
+    margin:0;
+    width: 100px;
+    padding: 20px;
+    height: 100px;
+    border-radius:50%;
+}
+div.postagem div.content div.react
+{
+    display: flex;
+    padding-bottom:10px;
+    justify-content: space-between;
 }

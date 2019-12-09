@@ -95,11 +95,11 @@ namespace SocialNetwork.Api.Controllers
 
             var requestJson = await result.Contents[0].ReadAsStringAsync();
 
-            var model = JsonConvert.DeserializeObject<ProfileBindingModel>(requestJson);
+            var model = JsonConvert.DeserializeObject<ProfileViewModel>(requestJson);
 
             if(result.Contents.Count > 1)
             {
-                model.PicutreUrl = await _blobCreator.CreateBlob(result.Contents[1], "Foto de perfil");
+                model.PictureUrl = await _blobCreator.CreateBlob(result.Contents[1], "Foto de perfil");
             }
 
             var accountId = User.Identity.GetUserId();
@@ -109,8 +109,8 @@ namespace SocialNetwork.Api.Controllers
                 AccountId = accountId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                BirthDate = model.BirthDate,
-                PicutreUrl = model.PicutreUrl
+                BirthDate = Convert.ToDateTime(model.BirthDate),
+                PicutreUrl = model.PictureUrl
             };
 
             if (profile != null)
@@ -123,7 +123,7 @@ namespace SocialNetwork.Api.Controllers
             Image image = new Image()
             {
                 Title = "Foto de perfil",
-                Url = model.PicutreUrl
+                Url = model.PictureUrl
             };
 
             List<Image> images = new List<Image>();
@@ -187,11 +187,24 @@ namespace SocialNetwork.Api.Controllers
         }
 
         [Route("UserInfo")]
-        public Profile GetProfile()
+        public ProfileViewModel GetProfile()
         {
             var accountId = User.Identity.GetUserId();
             Profile p = (from x in _dataContext.Profile where x.AccountId == accountId select x).FirstOrDefault();
-            return p;
+            if(p != null)
+            {
+                ProfileViewModel profile = new ProfileViewModel()
+                {
+                    FirstName = p.FirstName,
+                    PictureUrl = p.PicutreUrl,
+                    LastName = p.LastName,
+                    BirthDate = p.BirthDate.ToString(),
+                    Id = p.Id
+                };
+
+                return profile;
+            }
+            return null;
         }
 
         [Route("GetProfileById/{id}")]

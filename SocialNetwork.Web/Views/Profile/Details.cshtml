@@ -3,45 +3,39 @@
 
 @{
     ViewBag.Title = "Details";
-    var url = ViewBag.PictureUrl;
 }
 
-<h2>Perfil</h2>
-
 <div>
-    <dl class="dl-horizontal">
-        <dd>
-            <img class="foto-perfil" src="@Url.Content(url)" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-
-    </dl>
+    <div class="image-container">
+        <img class="foto-perfil" src="@Url.Content(Model.PictureUrl)" />
+    </div>
+    <h2 class="profile-name">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h2>
+    <section class="menu-perfil">
+        <ul>
+            <li>Linha do tempo</li>
+            <li>Sobre</li>
+            <li>Amigos</li>
+            <li>
+                @Html.ActionLink("Galeria de imagens", "GetGalleriesByUserId/" + Model.Id, "Gallery", null, null)
+            </li>
+            <li>@Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id })</li>
+        </ul>
+    </section>
+    <section class="apresentacao">
+        <h4>
+            <i class="fa fa-globe" aria-hidden="true"></i>
+            Apresentação
+        </h4>
+        <ul>
+            <li>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                Mora em Rio de janeiro
+            </li>
+            <li>
+                <i class="fa fa-rss" aria-hidden="true"></i>
+                Seguido por 50 pessoas
+            </li>
+            <li>Nasceu em @Html.DisplayFor(model => model.BirthDate)</li>
+        </ul>
+    </section>
 </div>
-
-<p>
-    @Html.ActionLink("Editar perfil", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Galeria de imagens", "GetLogedUserGalleries", "Gallery", null, null)
-</p>
